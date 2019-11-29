@@ -24,19 +24,25 @@ add_executable(${DATA_AUG_TARGET}
         ${COMMON_SRC_FILES}
         ${DATA_AUG_SRC_FILES})
 target_link_libraries(${DATA_AUG_TARGET}
-        gtest
         gflags
         ${Boost_LIBRARIES}
         ${PCL_LIBRARIES})
 
 ## visualization
 set(VIS_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/visualization)
-set(VIS_TARGET visualize)
-add_executable(${VIS_TARGET}
+set(SEG_VIS_TARGET seg_view)
+add_executable(${SEG_VIS_TARGET}
         ${COMMON_SRC_FILES}
-        ${VIS_SRC_DIR}/visualize.cpp)
-target_link_libraries(${VIS_TARGET}
-        gtest
+        ${VIS_SRC_DIR}/seg_visualize.cpp)
+target_link_libraries(${SEG_VIS_TARGET}
+        gflags
+        ${PCL_LIBRARIES})
+
+set(TRACK_VIS_TARGET track_view)
+add_executable(${TRACK_VIS_TARGET}
+        ${COMMON_SRC_FILES}
+        ${VIS_SRC_DIR}/track_visualize.cpp)
+target_link_libraries(${TRACK_VIS_TARGET}
         gflags
         ${PCL_LIBRARIES})
 
