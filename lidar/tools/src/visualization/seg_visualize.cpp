@@ -9,7 +9,7 @@
 
 #include "common/string_util.h"
 #include "common/label.h"
-#include "flags.h"
+#include "seg_viz_flags.h"
 
 void visualize(pcl::visualization::PCLVisualizer &visualizer,
                const std::string &id, double spin_times) {
