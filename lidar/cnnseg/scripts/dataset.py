@@ -19,6 +19,8 @@ def check_flags():
         raise ValueError("Width is not specified")
     if FLAGS.in_channel is None:
         raise ValueError("Input channel is not specified")
+    if FLAGS.record_tag is None:
+        raise ValueError("record_tag is not specified")
     if FLAGS.out_channel is None:
         raise ValueError("Output channel is not specified")
     if FLAGS.output_parts < FLAGS.worker_num:
