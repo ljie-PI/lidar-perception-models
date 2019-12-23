@@ -83,8 +83,10 @@ inline int PointToGridID(float pt_x, float pt_y, float pt_z,
 
 static bool GenerateFeatures(const pcl::PointCloud<pcl::PointXYZI> &pc, float *feat_data) {
   int channel_index = 0;
+  int map_size = FLAGS_height * FLAGS_width;
   // access for convenience
   float *max_height_data = feat_data + offset(channel_index++);
+  std::fill_n(max_height_data, map_size, FLAGS_min_height);
   float *mean_height_data = feat_data + offset(channel_index++);
   float *count_data = feat_data + offset(channel_index++);
   float *direction_data = feat_data + offset(channel_index++);
@@ -124,7 +126,6 @@ static bool GenerateFeatures(const pcl::PointCloud<pcl::PointXYZI> &pc, float *f
     count_data[idx] += 1.f;
   }
 
-  int map_size = FLAGS_height * FLAGS_width;
   for (int i = 0; i < map_size; ++i) {
     if (count_data[i] <= FLT_EPSILON) {
       max_height_data[i] = 0.f;
@@ -138,7 +139,7 @@ static bool GenerateFeatures(const pcl::PointCloud<pcl::PointXYZI> &pc, float *f
   return true;
 }
 
-static bool SaveFeatures(const float *feat_data, const std::string filepath) {
+static bool SaveFeatures(const float *feat_data, const std::string &filepath) {
   std::ofstream ofs(filepath);
   if (!ofs.is_open()) {
     std::cerr << "Failed to open file " << filepath << " for write" << std::endl;
