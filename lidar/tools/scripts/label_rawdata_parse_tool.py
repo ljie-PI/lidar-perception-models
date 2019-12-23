@@ -34,23 +34,23 @@ def parse_baidu_raw_label_file(file_path, out_put_path):
                 file_index = zip_file_name.split(".")[0]
                 pcd_index = file_index.split("_")[-1]
                 extra = json_obj['extra']
-                for item in extra:
-                  labels = item['label']['3D']
-                  out_json_file = os.path.join(out_put_path, pcd_index + ".label")
-                  with open(out_json_file, 'w') as f_out:
-                      for label in labels:
-                          center_x = float(label['position']['x'])
-                          center_y = float(label['position']['y'])
-                          center_z = float(label['position']['z'])
-                          length = float(label['size'][0])
-                          width = float(label['size'][1])
-                          height = float(label['size'][2])
-                          phi = float(label['rotation']['phi'])
-                          cls_type = parse_type(label['type'])
-                          f_out.write("%f %f %f %f %f %f %f %s\n" % (
-                              center_x, center_y, center_z,
-                              length, width, height, phi, cls_type
-                          ))
+                out_json_file = os.path.join(out_put_path, pcd_index + ".label")
+                with open(out_json_file, 'w') as f_out:
+                    for item in extra:
+                        labels = item['label']['3D']       
+                        for label in labels:
+                            center_x = float(label['position']['x'])
+                            center_y = float(label['position']['y'])
+                            center_z = float(label['position']['z'])
+                            length = float(label['size'][0])
+                            width = float(label['size'][1])
+                            height = float(label['size'][2])
+                            phi = float(label['rotation']['phi'])
+                            cls_type = parse_type(label['type'])
+                            f_out.write("%f %f %f %f %f %f %f %s\n" % (
+                                center_x, center_y, center_z,
+                                length, width, height, phi, cls_type
+                            ))
             except Exception as e:
                 print('illegal str {}'.format(line))
                 traceback.print_exc()
