@@ -44,8 +44,7 @@ def parse_list_extra(extra,out_json_file):
 def parse_dict_extra(extra,out_json_file):
     labels = extra['label']['3D']
     with open(out_json_file, 'w') as f_out:
-        for label in labels:
-            write_label_file(labels,f_out)
+        write_label_file(labels,f_out)
 
 def parse_baidu_raw_label_file(file_path, out_put_path):
     with open(file_path, 'r') as f_in:
