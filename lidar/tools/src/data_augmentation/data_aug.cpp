@@ -1,3 +1,4 @@
+#include <thread>
 #include <pcl/visualization/pcl_visualizer.h>
 
 #include "flags.h"
@@ -65,6 +66,35 @@ std::vector<std::shared_ptr<Transform>> GetTransforms() {
   return transforms;
 }
 
+void process(int init_idx, std::vector<std::string> *ori_pcd_files,
+             std::vector<std::shared_ptr<Transform>> *transforms) {
+  int total_len = ori_pcd_files->size();
+  for (int i = init_idx; i < total_len; i+=FLAGS_thread_num) {
+    std::string &ori_pcd_file = ori_pcd_files->at(i);
+    int fname_start = ori_pcd_file.rfind('/') + 1;
+    std::string example_id = ori_pcd_file.substr(fname_start, ori_pcd_file.length() - fname_start - 4);
+    std::string label_file = std::move(LabelFileName(example_id, FLAGS_input_label_dir));
+    if (FileUtil::Exists(label_file)) {
+      Example ori_example(example_id, ori_pcd_file, label_file);
+      if (ori_example.IsValid()) {
+        std::cout << "====================" << std::endl;
+        std::cout << "Processing example: " << ori_example.ExampleID() << std::endl;
+        std::cout << "Label contains " << ori_example.GetLabel().BoundingBoxCount() << " obstacles" << std::endl;
+        for (int trans_idx = 0; trans_idx < transforms->size(); ++trans_idx) {
+          std::shared_ptr<Transform> transform = transforms->at(trans_idx);
+          Example trans_example;
+          transform->ApplyByRatio(ori_example, &trans_example);
+          if (trans_example.IsValid()) {
+            transform->Save(trans_example, FLAGS_output_pcd_dir, FLAGS_output_label_dir);
+          }
+        }
+      }
+    } else {
+      std::cerr << label_file << " does not exist" << std::endl;
+    }
+  }
+}
+
 int main(int argc, char **argv) {
   gflags::ParseCommandLineFlags(&argc, &argv, true);
 
@@ -77,27 +107,14 @@ int main(int argc, char **argv) {
 
   std::vector<std::string> ori_pcd_files;
   FileUtil::GetFileList(FLAGS_input_pcd_dir, ".pcd", &ori_pcd_files);
-  std::vector<Example> ori_examples;
-  for (auto &ori_pcd_file : ori_pcd_files) {
-    int fname_start = ori_pcd_file.rfind('/') + 1;
-    std::string example_id = ori_pcd_file.substr(fname_start, ori_pcd_file.length() - fname_start - 4);
-    std::string label_file = std::move(LabelFileName(example_id, FLAGS_input_label_dir));
-    if (FileUtil::Exists(label_file)) {
-      Example ori_example(example_id, ori_pcd_file, label_file);
-      if (ori_example.IsValid()) {
-        std::cout << "====================" << std::endl;
-        std::cout << "Processing example: " << ori_example.ExampleID() << std::endl;
-        std::cout << "Label contains " << ori_example.GetLabel().BoundingBoxCount() << " obstacles" << std::endl;
-        for (const auto &transform : transforms) {
-          Example trans_example;
-          transform->ApplyByRatio(ori_example, &trans_example);
-          if (trans_example.IsValid()) {
-            transform->Save(trans_example, FLAGS_output_pcd_dir, FLAGS_output_label_dir);
-          }
-        }
-      }
-    } else {
-      std::cerr << label_file << " does not exist" << std::endl;
-    }
+
+  std::vector<std::shared_ptr<std::thread>> tasks;
+  for (int tid = 0; tid < FLAGS_thread_num; ++tid) {
+    std::shared_ptr<std::thread> task = std::make_shared<std::thread>(process, tid, &ori_pcd_files, &transforms);
+    tasks.push_back(task);
   }
+  for (auto task : tasks) {
+    task->join();
+  }
+  return 0;
 }
