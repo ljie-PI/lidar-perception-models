@@ -258,25 +258,25 @@ class CNNSegModel(object):
 
         deconv4 = self._deconv_layer(deconv5_1, 192, 128, (4, 4), 2,
                                      out_shape=tf.shape(conv4), scope="deconv4")
-        concat4 = tf.concat([conv4, deconv4], axis=-1)
+        concat4 = tf.concat([conv4, deconv4], axis=3)
         deconv4_1 = self._conv_layer(concat4, 256, 128, (3, 3), 1, scope="deconv4_1")
         tf.logging.info("shape of deconv4_1 is {}".format(deconv4_1.shape))
 
         deconv3 = self._deconv_layer(deconv4_1, 128, 96, (4, 4), 2,
                                      out_shape=tf.shape(conv3), scope="deconv3")
-        concat3 = tf.concat([conv3, deconv3], axis=-1)
+        concat3 = tf.concat([conv3, deconv3], axis=3)
         deconv3_1 = self._conv_layer(concat3, 192, 96, (3, 3), 1, scope="deconv3_1")
         tf.logging.info("shape of deconv3_1 is {}".format(deconv3_1.shape))
 
         deconv2 = self._deconv_layer(deconv3_1, 96, 64, (4, 4), 2,
                                      out_shape=tf.shape(conv2), scope="deconv2")
-        concat2 = tf.concat([conv2, deconv2], axis=-1)
+        concat2 = tf.concat([conv2, deconv2], axis=3)
         deconv2_1 = self._conv_layer(concat2, 128, 64, (3, 3), 1, scope="deconv2_1")
         tf.logging.info("shape of deconv2_1 is {}".format(deconv2_1.shape))
 
         deconv1 = self._deconv_layer(deconv2_1, 64, 48, (4, 4), 2,
                                      out_shape=tf.shape(conv1), scope="deconv1")
-        concat1 = tf.concat([conv1, deconv1], axis=-1)
+        concat1 = tf.concat([conv1, deconv1], axis=3)
         deconv1_1 = self._conv_layer(concat1, 96, 48, (3, 3), 1, scope="deconv1_1")
         tf.logging.info("shape of deconv1_1 is {}".format(deconv1_1.shape))
 
