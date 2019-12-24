@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import os
 import math
 import argparse
@@ -179,7 +177,5 @@ if __name__ == "__main__":
     parser.add_argument('--height', '-ht', help='2d height', type=int, default=480)
     parser.add_argument('--range', '-r', help='lidar range', type=float, default=40.0)
     args = parser.parse_args()
-    if not os.path.exists(args.output_path):
-        os.makedirs(args.output_path)
     generator = LabelGenerator(args.input_path, args.output_path, args.width, args.height, args.range)
     generator.generate_label()
