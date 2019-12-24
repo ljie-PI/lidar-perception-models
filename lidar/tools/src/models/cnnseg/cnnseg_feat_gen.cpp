@@ -1,7 +1,9 @@
-#include <iostream>
-#include <vector>
-#include <string>
+#include <chrono>
 #include <fstream>
+#include <iostream>
+#include <string>
+#include <thread>
+#include <vector>
 
 #include <gflags/gflags.h>
 #include <pcl/point_types.h>
@@ -25,6 +27,8 @@ DEFINE_double(range, 40, "range in which obstacles are considered");
 DEFINE_double(min_height, -5.0, "minimum height of LiDAR points");
 DEFINE_double(max_height, 5.0, "maximum height of LiDAR points");
 DEFINE_int32(channel_num, 8, "channel number of feature map");
+
+DEFINE_int32(thread_num, 8, "number of threads");
 
 static const double PI = 3.1415926535897932384626433832795;
 static float *log_table = nullptr;
@@ -162,6 +166,43 @@ static bool SaveFeatures(const float *feat_data, const std::string &filepath) {
   return true;
 }
 
+void process(int init_idx, std::vector<std::string> *pcd_files) {
+  int feat_data_size = FLAGS_channel_num * FLAGS_height * FLAGS_width;
+  float *feat_data = new float[feat_data_size];
+  int total_len = pcd_files->size();
+  for (int i = init_idx; i < total_len; i+=FLAGS_thread_num) {
+    std::string &pcd_file = pcd_files->at(i);
+    int fname_start = pcd_file.rfind('/') + 1;
+    std::string example_id = pcd_file.substr(fname_start, pcd_file.length() - fname_start - 4);
+
+    pcl::PointCloud<pcl::PointXYZI> pc;
+    auto start1 = std::chrono::system_clock::now();
+    if (pcl::io::loadPCDFile(pcd_file, pc) < 0) {
+      std::cerr << "Failed to load pcd file: " << pcd_file << std::endl;
+      continue;
+    }
+    auto end1 = std::chrono::system_clock::now();
+    std::cout << "load time cost: " << (end1 - start1).count()/1000000 << std::endl;
+
+    auto start2 = std::chrono::system_clock::now();
+    std::fill_n(feat_data, feat_data_size, 0.0);
+    if (!GenerateFeatures(pc, feat_data)) {
+      std::cerr << "Failed to generate features for example: " << example_id << std::endl;
+      continue;
+    }
+    auto end2 = std::chrono::system_clock::now();
+    std::cout << "extract time cost: " << (end2 - start2).count()/1000000 << std::endl;
+
+    auto start3 = std::chrono::system_clock::now();
+    std::string feat_file = FLAGS_output_dir + "/" + example_id + ".txt";
+    if (!SaveFeatures(feat_data, feat_file)) {
+      std::cerr << "Failed to save features for example: " << example_id << std::endl;
+    }
+    auto end3 = std::chrono::system_clock::now();
+    std::cout << "save time cost: " << (end3 - start3).count()/1000000 << std::endl;
+  }
+}
+
 int main(int argc, char **argv) {
   gflags::ParseCommandLineFlags(&argc, &argv, true);
 
@@ -180,28 +221,17 @@ int main(int argc, char **argv) {
   FileUtil::GetFileList(FLAGS_input_pcd_dir, ".pcd", &pcd_files);
 
   InitLogTable();
-  int feat_data_size = FLAGS_channel_num * FLAGS_height * FLAGS_width;
-  float *feat_data = new float[feat_data_size];
-  for (auto &pcd_file : pcd_files) {
-    int fname_start = pcd_file.rfind('/') + 1;
-    std::string example_id = pcd_file.substr(fname_start, pcd_file.length() - fname_start - 4);
 
-    pcl::PointCloud<pcl::PointXYZI> pc;
-    if (pcl::io::loadPCDFile(pcd_file, pc) < 0) {
-      std::cerr << "Failed to load pcd file: " << pcd_file << std::endl;
-      continue;
-    }
+  std::cout << "Thread Number: " << FLAGS_thread_num << std::endl;
+  std::vector<std::shared_ptr<std::thread>> tasks;
 
-    std::fill_n(feat_data, feat_data_size, 0.0);
-    if (!GenerateFeatures(pc, feat_data)) {
-      std::cerr << "Failed to generate features for example: " << example_id << std::endl;
-      continue;
-    }
-
-    std::string feat_file = FLAGS_output_dir + "/" + example_id + ".txt";
-    if (!SaveFeatures(feat_data, feat_file)) {
-      std::cerr << "Failed to save features for example: " << example_id << std::endl;
-    }
+  for (int tid = 0; tid < FLAGS_thread_num; ++tid) {
+    std::shared_ptr<std::thread> task = std::make_shared<std::thread>(process, tid, &pcd_files);
+    tasks.push_back(task);
   }
+  for (auto task : tasks) {
+    task->join();
+  }
+
   return 0;
 }

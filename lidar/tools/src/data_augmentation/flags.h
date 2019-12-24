@@ -92,3 +92,5 @@ DEFINE_double(move_obs_ratio, default_trans_ratio,
               "ratio of data augmented by adding noise");
 DEFINE_double(move_obs_mean, 0, "mean of move distance");
 DEFINE_double(move_obs_std, 0.25, "standard deviation of move distance");
+
+DEFINE_int32(thread_num, 8, "number of threads");
