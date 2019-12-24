@@ -2,11 +2,7 @@
 Models Used in Neolix Perception Module
 
 ## Dependencies
-+ Boost
-+ PCL
-+ Eigen
-+ GFlags
-+ GTests
+
 ### C++
 
 + Boost
