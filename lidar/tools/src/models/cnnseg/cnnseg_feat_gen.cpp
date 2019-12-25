@@ -24,48 +24,142 @@ DEFINE_int32(width, 480, "width of 2d grids");
 DEFINE_double(range, 40, "range in which obstacles are considered");
 DEFINE_double(min_height, -5.0, "minimum height of LiDAR points");
 DEFINE_double(max_height, 5.0, "maximum height of LiDAR points");
+DEFINE_int32(channel_num, 8, "channel number of feature map");
 
-struct CNNSegFeature {
-  int row;
-  int col;
-  float max_height;
-  float mean_height;
-  float log_count;
-  float direction;
-  float top_intensity;
-  float mean_intensity;
-  float distance;
-  int nonempty;
-};
+static const double PI = 3.1415926535897932384626433832795;
+static float *log_table = nullptr;
+static const int MaxLogNum = 256;
 
-static bool generate_features(const pcl::PointCloud<pcl::PointXYZI> &pc,
-                              std::vector<std::shared_ptr<CNNSegFeature>> *features) {
-
+static void InitLogTable() {
+  log_table = new float[MaxLogNum];
+  for (size_t i = 0; i < MaxLogNum; ++i) {
+    log_table[i] = std::log(static_cast<float>(1 + i));
+  }
 }
 
-static bool save_features(const std::vector<std::shared_ptr<CNNSegFeature>> &features,
-                          const std::string filepath) {
+float LogCount(int count) {
+  if (count < static_cast<int>(MaxLogNum)) {
+    return log_table[count];
+  }
+  return logf(static_cast<float>(1 + count));
+}
+
+static inline int offset(const int c = 0, const int h = 0, const int w = 0) {
+  return (c * FLAGS_height + h) * FLAGS_width + w;
+}
+
+inline float Pixel2Pc(int in_pixel, float in_size, float out_range) {
+  float res = 2.0f * out_range / in_size;
+  return out_range - (static_cast<float>(in_pixel) + 0.5f) * res;
+}
+
+inline void GroupPc2Pixel(float pc_x, float pc_y, float scale, float range,
+                          int* x, int* y) {
+  float fx = (range - (0.707107f * (pc_x + pc_y))) * scale;
+  float fy = (range - (0.707107f * (pc_x - pc_y))) * scale;
+  *x = fx < 0 ? -1 : static_cast<int>(fx);
+  *y = fy < 0 ? -1 : static_cast<int>(fy);
+}
+
+// map point to grid_id
+inline int PointToGridID(float pt_x, float pt_y, float pt_z,
+                         int height, int width, float range,
+                         int min_height, int max_height, float inv_res_x = 0.0) {
+  if (inv_res_x == 0.0) {
+    inv_res_x = 0.5f * static_cast<float>(width) / range;
+  }
+
+  if (pt_z <= min_height || pt_z >= max_height) {
+    return -1;
+  }
+  int pos_x = -1;
+  int pos_y = -1;
+  GroupPc2Pixel(pt_x, pt_y, inv_res_x, range, &pos_x, &pos_y);
+  if (pos_y < 0 || pos_y >= height || pos_x < 0 || pos_x >= width) {
+    return -1;
+  }
+  return pos_y * width + pos_x;
+}
+
+static bool GenerateFeatures(const pcl::PointCloud<pcl::PointXYZI> &pc, float *feat_data) {
+  int channel_index = 0;
+  int map_size = FLAGS_height * FLAGS_width;
+  // access for convenience
+  float *max_height_data = feat_data + offset(channel_index++);
+  std::fill_n(max_height_data, map_size, FLAGS_min_height);
+  float *mean_height_data = feat_data + offset(channel_index++);
+  float *count_data = feat_data + offset(channel_index++);
+  float *direction_data = feat_data + offset(channel_index++);
+  float *top_intensity_data = feat_data + offset(channel_index++);
+  float *mean_intensity_data = feat_data + offset(channel_index++);
+  float *distance_data = feat_data + offset(channel_index++);
+  float *nonempty_data = feat_data + offset(channel_index++);
+
+  // extract constant features which are only affected by row and column
+  for (int row = 0; row < FLAGS_height; ++row) {
+    for (int col = 0; col < FLAGS_width; ++col) {
+      int idx = row * FLAGS_width + col;
+      float center_x = Pixel2Pc(row, static_cast<float>(FLAGS_height), FLAGS_range);
+      float center_y = Pixel2Pc(col, static_cast<float>(FLAGS_width), FLAGS_range);
+      direction_data[idx] = static_cast<float>(std::atan2(center_y, center_x) / (2.0 * PI));
+      distance_data[idx] = static_cast<float>(std::hypot(center_x, center_y) / 60.0 - 0.5);
+    }
+  }
+
+  // iterate point cloud to extract dynamic features
+  float inv_res_x = 0.5f * static_cast<float>(FLAGS_width) / FLAGS_range;
+  for (size_t i = 0; i < pc.size(); ++i) {
+    const pcl::PointXYZI &pt = pc[i];
+    int idx = PointToGridID(pt.x, pt.y, pt.z, FLAGS_height, FLAGS_width, FLAGS_range,
+                            FLAGS_min_height, FLAGS_max_height, inv_res_x);
+    if (idx == -1) {
+      continue;
+    }
+    float pz = pt.z;
+    float pi = float(pt.intensity) / 255.0f;
+    if (max_height_data[idx] < pz) {
+      max_height_data[idx] = pz;
+      top_intensity_data[idx] = pi;
+    }
+    mean_height_data[idx] += static_cast<float>(pz);
+    mean_intensity_data[idx] += static_cast<float>(pi);
+    count_data[idx] += 1.f;
+  }
+
+  for (int i = 0; i < map_size; ++i) {
+    if (count_data[i] <= FLT_EPSILON) {
+      max_height_data[i] = 0.f;
+    } else {
+      mean_height_data[i] /= count_data[i];
+      mean_intensity_data[i] /= count_data[i];
+      nonempty_data[i] = 1.f;
+    }
+    count_data[i] = LogCount(static_cast<int>(count_data[i]));
+  }
+  return true;
+}
+
+static bool SaveFeatures(const float *feat_data, const std::string &filepath) {
   std::ofstream ofs(filepath);
   if (!ofs.is_open()) {
     std::cerr << "Failed to open file " << filepath << " for write" << std::endl;
     return false;
   }
-  for (auto &feature : features) {
-    if (feature->nonempty == 1) {
-      ofs << feature->row << ' '
-          << feature->col << ' '
-          << feature->max_height << ' '
-          << feature->mean_height << ' '
-          << feature->log_count << ' '
-          << feature->direction << ' '
-          << feature->top_intensity << ' '
-          << feature->mean_intensity << ' '
-          << feature->distance << ' '
-          << feature->nonempty << '\n';
+  int nonempty_chan = FLAGS_channel_num - 1;
+  for (int row = 0; row < FLAGS_height; ++row) {
+    for (int col = 0; col < FLAGS_width; ++ col) {
+      if (feat_data[offset(nonempty_chan, row, col)] == 1.f) {
+        ofs << row << ' ' << col << ' ';
+        for (int chan = 0; chan < FLAGS_channel_num - 1; ++chan) {
+          ofs << feat_data[offset(chan, row, col)] << ' ';
+        }
+        ofs << "1\n";
+      }
     }
   }
   ofs.flush();
   ofs.close();
+  return true;
 }
 
 int main(int argc, char **argv) {
@@ -85,6 +179,9 @@ int main(int argc, char **argv) {
   std::vector<std::string> pcd_files;
   FileUtil::GetFileList(FLAGS_input_pcd_dir, ".pcd", &pcd_files);
 
+  InitLogTable();
+  int feat_data_size = FLAGS_channel_num * FLAGS_height * FLAGS_width;
+  float *feat_data = new float[feat_data_size];
   for (auto &pcd_file : pcd_files) {
     int fname_start = pcd_file.rfind('/') + 1;
     std::string example_id = pcd_file.substr(fname_start, pcd_file.length() - fname_start - 4);
@@ -95,14 +192,14 @@ int main(int argc, char **argv) {
       continue;
     }
 
-    std::vector<std::shared_ptr<CNNSegFeature>> features;
-    if (!generate_features(pc, &features)) {
+    std::fill_n(feat_data, feat_data_size, 0.0);
+    if (!GenerateFeatures(pc, feat_data)) {
       std::cerr << "Failed to generate features for example: " << example_id << std::endl;
       continue;
     }
 
     std::string feat_file = FLAGS_output_dir + "/" + example_id + ".txt";
-    if (!save_features(features, feat_file)) {
+    if (!SaveFeatures(feat_data, feat_file)) {
       std::cerr << "Failed to save features for example: " << example_id << std::endl;
     }
   }
