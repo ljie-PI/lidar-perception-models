@@ -1,14 +1,11 @@
 cmake_minimum_required(VERSION 2.8)
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-
 include(${CMAKE_SOURCE_DIR}/cmake/GFlags.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/GTest.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/Boost.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/PCL.cmake)
 
+include_directories(${CMAKE_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
@@ -47,6 +44,3 @@ target_link_libraries(${TRACK_VIS_TARGET}
         ${PCL_LIBRARIES})
 
 ## metric calculation
-
-## model specific
-add_subdirectory(models/cnnseg)

@@ -1,4 +1,4 @@
 cmake_minimum_required(VERSION 2.8)
-project(tools)
+project(cnnseg)
 
 add_subdirectory(src)

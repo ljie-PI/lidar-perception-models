@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys
+import os
 import tensorflow as tf
 
 from multiprocessing import Process, Queue
@@ -268,6 +269,8 @@ def main(_):
         FLAGS.out_channel,
         FLAGS.record_tag
     )
+    if not os.path.exists(FLAGS.output_dir):
+        os.makedirs(FLAGS.output_dir)
     # dataset.convert_to_tfrecords(FLAGS.output_dir)
     dataset.convert_to_tfrecords_parallel(FLAGS.output_dir)
 

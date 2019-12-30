@@ -1,0 +1,48 @@
+syntax = "proto2";
+
+package pointpillars;
+
+message Point {
+  required float x = 1;
+  required float y = 2;
+  required float z = 3;
+  optional float reflection = 4;
+  optional float distance = 5;
+}
+
+message Voxel {
+  repeated float data = 1 [packed=true];
+  repeated int32 shape = 2; // shapes are [num_max_voxel, num_max_points, feature_dim]
+}
+
+message VoxelCoord {
+  repeated float data = 1 [packed=true];
+  repeated int32 shape = 2; // shapes are [num_nonempty_voxel, coord_dim]
+}
+
+message Anchor {
+  required int32 offset_x = 1;
+  required int32 offset_y = 2;
+  required float length = 3;
+  required float width = 4;
+  required float yaw = 5;
+}
+
+message Label {
+  required int32 class = 1;
+  required float center_x = 2;
+  required float center_y = 3;
+  required float center_z = 4;
+  required float length = 5;
+  required float width = 6;
+  required float height = 7;
+  required float yaw = 8;
+}
+
+message Example {
+  required Voxel voxel = 1;  // non-empty continous voxels
+  required VoxelCoord voxel_coord = 2;  // x, y coordinats of voxel in sparse input feature map
+  repeated Label label = 3;
+  optional string example_id = 4;
+  optional Point point = 5; // raw points is not necessary for training
+}
