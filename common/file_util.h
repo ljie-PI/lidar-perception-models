@@ -18,8 +18,7 @@ public:
     }
     boost::filesystem::recursive_directory_iterator itr(path);
     while (itr != boost::filesystem::recursive_directory_iterator()) {
-      try {
-        const std::string &filename = itr->path().string();
+      try { const std::string &filename = itr->path().string();
         if (filename.rfind(suffix) == filename.length() - suffix.length()) {
           files->push_back(filename);
         }
@@ -61,7 +60,13 @@ public:
     ofs.close();
   }
 
-  static bool Mkdir(std::string dir) {
+  static bool Mkdir(const std::string &dir) {
     return boost::filesystem::create_directories(dir);
+  }
+
+  static bool EnsureDirectory(const std::string &dir) {
+    if (!Exists(dir)) {
+      Mkdir(dir);
+    }
   }
 };

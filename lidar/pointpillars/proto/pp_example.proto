@@ -12,37 +12,50 @@ message Point {
 
 message Voxel {
   repeated float data = 1 [packed=true];
-  repeated int32 shape = 2; // shapes are [num_max_voxel, num_max_points, feature_dim]
+
+  // shapes are [num_max_voxel, num_max_points, feature_dim]
+  repeated int32 shape = 2;
 }
 
 message VoxelCoord {
-  repeated float data = 1 [packed=true];
-  repeated int32 shape = 2; // shapes are [num_nonempty_voxel, coord_dim]
+  repeated int32 data = 1 [packed=true];
+
+  // shapes are [num_nonempty_voxel, coord_dim]
+  repeated int32 shape = 2;
 }
 
 message Anchor {
-  required int32 offset_x = 1;
-  required int32 offset_y = 2;
-  required float length = 3;
-  required float width = 4;
-  required float yaw = 5;
-}
-
-message Label {
-  required int32 class = 1;
-  required float center_x = 2;
-  required float center_y = 3;
-  required float center_z = 4;
+  required int32 center_x = 3;
+  required int32 center_y = 4;
   required float length = 5;
   required float width = 6;
   required float height = 7;
-  required float yaw = 8;
+  required float rotation = 8;
+
+  // targeted label id, -1 stands for ignore
+  optional int32 target_label = 1 [default = -1];
+
+  // whether it's a postive anchor
+  optional bool is_postive = 2 [default = false];
+}
+
+message Label {
+  required int32 label_id = 1;
+  required int32 type = 2;
+  required float center_x = 3;
+  required float center_y = 4;
+  required float center_z = 5;
+  required float length = 6;
+  required float width = 7;
+  required float height = 8;
+  required float yaw = 9;
 }
 
 message Example {
   required Voxel voxel = 1;  // non-empty continous voxels
   required VoxelCoord voxel_coord = 2;  // x, y coordinats of voxel in sparse input feature map
-  repeated Label label = 3;
-  optional string example_id = 4;
-  optional Point point = 5; // raw points is not necessary for training
+  repeated Anchor anchor = 3; // anchor
+  repeated Label label = 4;
+  optional string example_id = 5;
+  repeated Point point = 6; // raw points is not necessary for training
 }

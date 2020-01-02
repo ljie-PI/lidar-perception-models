@@ -6,10 +6,11 @@ include(${CMAKE_SOURCE_DIR}/cmake/Boost.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/PCL.cmake)
 
 include_directories(${CMAKE_SOURCE_DIR})
+include_directories(${CMAKE_SOURCE_DIR}/lidar)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-set(COMMON_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common)
+set(COMMON_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../common)
 file(GLOB COMMON_SRC_FILES ${COMMON_SRC_DIR}/*.cpp)
 
 ## data augmentation

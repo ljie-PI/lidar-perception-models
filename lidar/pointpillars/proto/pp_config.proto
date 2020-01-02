@@ -1,0 +1,46 @@
+syntax = "proto2";
+
+package pointpillars;
+
+message VoxelConfig {
+  required float x_resolution = 1;
+  required float y_resolution = 2;
+  required float z_resolution = 3;
+  required float x_range_min = 4;
+  required float x_range_max = 5;
+  required float y_range_min = 6;
+  required float y_range_max = 7;
+  required float z_range_min = 8;
+  required float z_range_max = 9;
+  required int32 num_voxels = 10;
+  required int32 num_points_per_voxels = 11;
+  optional bool save_points = 12 [default=false];
+  optional bool log_voxel_num = 13 [default=false]; // enable to output voxel_num distribution
+  optional bool log_point_num = 14 [default=false]; // enable to output piont_num distribution
+}
+
+message AnchorSize {
+  required float length = 1;
+  required float width = 2;
+  required float height = 3;
+}
+
+message AnchorConfig {
+  // IOU of  (anchor, label) pair above which will be considered as positive
+  required float match_thr = 1;
+  // IOU of  (anchor, label) pair below which will be considered as positive
+  required float unmatch_thr = 2;
+  // output_factor = in_featmap_size / out_featmap_size
+  required float output_factor = 3;
+
+  // pre-defined anchor size
+  repeated AnchorSize anchor_size = 4;
+
+  optional bool sample_unmatch_anchor = 5 [default=false];
+  optional float sample_unmatch_ratio = 6 [default=1.0];
+}
+
+message PointPillarsConfig {
+  required VoxelConfig voxel_config = 1;
+  required AnchorConfig anchor_config = 2;
+}
