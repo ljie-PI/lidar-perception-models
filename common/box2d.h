@@ -37,12 +37,11 @@ class Box2D {
       rot_corners(1, i) = rot_corners(1, i) + y;
     }
 
-    double points[][2] = {{rot_corners(0, 0), rot_corners(1, 0)},
-                          {rot_corners(0, 1), rot_corners(1, 1)},
-                          {rot_corners(0, 2), rot_corners(1, 2)},
-                          {rot_corners(0, 3), rot_corners(1, 3)},
-                          {rot_corners(0, 0), rot_corners(1, 0)}};
-    append(polygon_, points);
+    append(polygon_, Point2D(rot_corners(0, 0), rot_corners(1, 0)));
+    append(polygon_, Point2D(rot_corners(0, 1), rot_corners(1, 1)));
+    append(polygon_, Point2D(rot_corners(0, 2), rot_corners(1, 2)));
+    append(polygon_, Point2D(rot_corners(0, 3), rot_corners(1, 3)));
+    append(polygon_, Point2D(rot_corners(0, 0), rot_corners(1, 0)));
 
     min_x_ = max_x_ = rot_corners(0, 0);
     min_y_ = max_y_ = rot_corners(1, 0);

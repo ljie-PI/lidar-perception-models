@@ -4,6 +4,7 @@ include(${CMAKE_SOURCE_DIR}/cmake/GFlags.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/GTest.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/Boost.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/PCL.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/Protobuf.cmake)
 
 include_directories(${CMAKE_SOURCE_DIR}) 
 include_directories(${CMAKE_SOURCE_DIR}/lidar)
@@ -25,4 +26,7 @@ add_executable(${PP_EXAMPLE_GEN}
         ${PP_EXAMPLE_GEN_SRCS})
 target_link_libraries(${PP_EXAMPLE_GEN}
         pp_proto_defs
+        gflags
+        ${Protobuf_LIBRARIES}
+        ${Boost_LIBRARIES}
         ${PCL_LIBRARIES})

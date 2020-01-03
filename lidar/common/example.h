@@ -4,7 +4,7 @@
 #include <pcl/point_types.h>
 #include <pcl/point_cloud.h>
 
-#include "lidar/common/label.h"
+#include "common/label.h"
 
 class Example {
 public:

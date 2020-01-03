@@ -237,7 +237,7 @@ bool TargetAssigner::MatchAnchorLabel(const std::vector<pointpillars::Anchor>& a
     float max_match_score_of_anchor = 0.0f;
     int max_match_label_of_anchor = -1;
     for (int lab_id = 0; lab_id < label_box2ds.size(); ++lab_id) {
-      const Box2D& label_box2d = label_box2ds[lab_id];
+      Box2D& label_box2d = label_box2ds[lab_id];
       float score = CalculateMatchScore(anchor, label_box2d);
       if (score > max_match_score_of_anchor) {
         max_match_score_of_anchor = score;
