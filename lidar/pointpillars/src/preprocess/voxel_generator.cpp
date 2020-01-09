@@ -44,6 +44,8 @@ VoxelGenerator::VoxelGenerator(const pointpillars::PointPillarsConfig& config) {
     }
   }
 
+  use_reflection_ = config.model_config().use_reflection();
+
   rand_shuffle_ = std::make_shared<RandomShuffle>();
 }
 
@@ -119,6 +121,8 @@ bool VoxelGenerator::Generate(const LidarPointCloud& point_cloud, pointpillars::
     example->mutable_voxel_coord()->add_data(coord.x);
     example->mutable_voxel_coord()->add_data(coord.y);
     example->mutable_voxel_coord()->add_data(coord.z);
+    float center_x, center_y, center_z;
+    voxel_mapping_->VoxelCenter(coord.x, coord.y, coord.z, &center_x, &center_y, &center_z);
 
     auto& point_idxs = voxel_points[voxel_idx];
     int point_size = point_idxs.size();
@@ -135,8 +139,14 @@ bool VoxelGenerator::Generate(const LidarPointCloud& point_cloud, pointpillars::
       example->mutable_voxel()->add_data(point.x);
       example->mutable_voxel()->add_data(point.y);
       example->mutable_voxel()->add_data(point.z);
-      example->mutable_voxel()->add_data(point.intensity);
+      if (use_reflection_) {
+        example->mutable_voxel()->add_data(point.intensity);
+      }
       example->mutable_voxel()->add_data(distance);
+      // [x, y, z] to pillar center
+      example->mutable_voxel()->add_data(point.x - center_x);
+      example->mutable_voxel()->add_data(point.y - center_y);
+      example->mutable_voxel()->add_data(point.z - center_z);
 
       if (save_points_) {
         auto exam_point = example->add_point();
@@ -148,6 +158,8 @@ bool VoxelGenerator::Generate(const LidarPointCloud& point_cloud, pointpillars::
       }
     }
 
+    example->mutable_voxel_points()->add_data(point_size);
+
     if (point_size < num_points_per_voxels_) {
       // less points than num_points_per_voxels_, will padding with zeros
       for (size_t poffset = point_size; poffset < num_points_per_voxels_; ++poffset) {
@@ -158,25 +170,10 @@ bool VoxelGenerator::Generate(const LidarPointCloud& point_cloud, pointpillars::
     }
   }
 
-  if (voxel_num < num_voxels_) {
-    // number of non-empty voxels less then num_voxels_,
-    // will padding with zeros
-    for (int voffset = voxel_num; voffset < num_voxels_; ++voffset) {
-      for (int cdim = 0; cdim < COORD_DIM; ++cdim) {
-        example->mutable_voxel_coord()->add_data(0.0);
-      }
-
-      for (size_t poffset = 0; poffset < num_points_per_voxels_; ++poffset) {
-        for (int pdim = 0; pdim < POINT_DIM; ++ pdim) {
-          example->mutable_voxel()->add_data(0.0);
-        }
-      }
-    }
-  }
-
-  example->mutable_voxel_coord()->add_shape(num_voxels_);
+  example->mutable_voxel_coord()->add_shape(voxel_num);
   example->mutable_voxel_coord()->add_shape(COORD_DIM);
-  example->mutable_voxel()->add_shape(num_voxels_);
+  example->mutable_voxel()->add_shape(voxel_num);
   example->mutable_voxel()->add_shape(num_points_per_voxels_);
   example->mutable_voxel()->add_shape(POINT_DIM);
+  example->mutable_voxel_points()->add_shape(voxel_num);
 }

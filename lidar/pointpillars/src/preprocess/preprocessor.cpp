@@ -15,7 +15,7 @@ PreProcessor::PreProcessor(pointpillars::PointPillarsConfig& config)
 bool PreProcessor::SaveExample(const pointpillars::Example& example,
                                const std::string& example_id,
                                const std::string& output_dir) {
-  std::string output_file = output_dir + "/" + example_id;
+  std::string output_file = output_dir + "/" + example_id + ".bin";
   return ProtobufUtil::SaveToBinaryFile(example, output_file);
 }
 

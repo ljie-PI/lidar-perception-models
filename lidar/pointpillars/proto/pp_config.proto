@@ -2,6 +2,11 @@ syntax = "proto2";
 
 package pointpillars;
 
+enum ProcessPhase {
+  PREPROCESS = 0;
+  TRAINING = 1;
+}
+
 message VoxelConfig {
   required float x_resolution = 1;
   required float y_resolution = 2;
@@ -30,17 +35,54 @@ message AnchorConfig {
   required float match_thr = 1;
   // IOU of  (anchor, label) pair below which will be considered as positive
   required float unmatch_thr = 2;
-  // output_factor = in_featmap_size / out_featmap_size
-  required float output_factor = 3;
 
   // pre-defined anchor size
-  repeated AnchorSize anchor_size = 4;
+  repeated AnchorSize anchor_size = 3;
+}
 
-  optional bool sample_unmatch_anchor = 5 [default=false];
-  optional float sample_unmatch_ratio = 6 [default=1.0];
+message ModelConfig {
+  required string model_name = 1;
+  required bool use_reflection = 2;
+  required int32 pillar_feat_dim = 3;
+  repeated int32 pillar_feat_filters = 4;
+  required int32 num_class = 5;
+  repeated int32 rpn_layer_num = 6;
+  repeated int32 rpn_layer_strides = 7;
+  repeated int32 rpn_num_filters = 8;
+  repeated int32 rpn_upsample_strides = 9;
+  repeated int32 rpn_upsample_filters = 10;
+  required int32 num_anchor_per_loc = 11;
+  required bool use_dir_class = 12;
+  required float nms_score_threshold = 13;
+  required float nms_iou_threshold = 14;
+}
+
+message TrainConfig {
+  required int32 batch_size = 1;
+  required int32 train_epochs = 2;
+  required int32 steps_per_eval = 3;
+  required int32 steps_to_save_chpts = 4;
+  required int32 max_keep_chpts = 5;
+  required int32 data_load_threads = 6;
+  required string optimizer = 7;
+  required float learning_rate = 8;
+  required float lr_decay = 9;
+  required float focal_alpha = 10;
+  required float focal_gamma = 11;
+  required int32 sample_anchor_size = 12;
+  required int32 max_pos_anchor_size = 13;
+  required int32 max_neg_match_anchor_size = 14;
+  required float pos_class_weight = 15;
+  required float neg_class_weight = 16;
+  required float cls_loss_weight = 17;
+  required float reg_loss_weight = 18;
+  required float dir_loss_weight = 19;
+  optional bool enable_summary = 20 [default=false];
 }
 
 message PointPillarsConfig {
   required VoxelConfig voxel_config = 1;
   required AnchorConfig anchor_config = 2;
+  required ModelConfig model_config = 3;
+  required TrainConfig train_config = 4;
 }

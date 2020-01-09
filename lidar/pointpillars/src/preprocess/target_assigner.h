@@ -35,12 +35,11 @@ class TargetAssigner {
 
   float match_thr_;
   float unmatch_thr_;
-  float output_factor_;
 
   std::vector<pointpillars::AnchorSize> anchor_sizes_;
   int anchor_size_cnt_;
 
-  bool sample_unmatch_anchor_;
+  pointpillars::ProcessPhase sample_unmatch_anchor_phase_;
   float sample_unmatch_ratio_;
   std::shared_ptr<UniformDistRandom> unmatch_anchor_sample_random_;
 

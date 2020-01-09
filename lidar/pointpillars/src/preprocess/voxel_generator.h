@@ -33,8 +33,12 @@ class VoxelGenerator {
   bool log_point_num_;
   std::ofstream point_num_ofs_;
 
+  bool use_reflection_;
+
+  pointpillars::ProcessPhase padding_phrase_;
+
   std::shared_ptr<RandomShuffle> rand_shuffle_;
 
   const int COORD_DIM = 3;
-  const int POINT_DIM = 5;
+  const int POINT_DIM = 8;
 };

@@ -1,0 +1,55 @@
+#!/usr/bin/env python
+
+import os
+import json
+import torch
+
+
+def latest_checkpoint(model_dir, model_name):
+    ckpt_info_path = os.path.join("{}-checkpoints.json".format(model_name))
+    if not os.path.exists(ckpt_info_path):
+        return None
+    with open(ckpt_info_path, 'r') as f:
+        ckpt_dict = json.loads(f.read())
+    if model_name not in ckpt_dict['latest_ckpt']:
+        return None
+    latest_ckpt = ckpt_dict['latest_ckpt']
+    ckpt_file_name = os.path.join(model_dir, latest_ckpt)
+    if not ckpt_file_name.is_file():
+        return None
+    return ckpt_file_name
+
+
+def save_model(model_dir,
+               model,
+               model_name,
+               global_step,
+               max_to_keep=5):
+    ckpt_info_path = os.path.join(model_dir, "{}-checkpoints.json".format(model_name))
+    if not os.path.exists(ckpt_info_path):
+        ckpt_info_dict = {"latest_ckpt": {}, "all_ckpts": {}}
+    else:
+        with open(ckpt_info_path, "r") as f:
+            ckpt_info_dict = json.loads(f.read())
+    ckpt_filename = "{}-{}.ckpt".format(model_name, global_step)
+
+    ckpt_path = os.path.join(model_dir, ckpt_filename)
+    torch.save(model.state_dict(), ckpt_path)
+
+    ckpt_info_dict["latest_ckpt"] = ckpt_filename
+    ckpts_to_delete = []
+    saved_model_num = len(ckpt_info_dict["all_ckpts"])
+    if saved_model_num >= max_to_keep:
+        for _ in range(saved_model_num - max_to_keep + 1):
+            ckpts_to_delete.append[ckpt_info_dict["all_ckpts"].pop(0)]
+    ckpt_info_dict["all_ckpts"].append(ckpt_filename)
+    with open(ckpt_info_path, "w") as f:
+        f.write(json.dumps(ckpt_info_dict, indent=2))
+    for ckpt_to_delete in ckpts_to_delete:
+        os.remove(os.path.join(model_dir, ckpt_to_delete))
+
+
+def restore_model(model, ckpt_path):
+    if not os.path.exists(ckpt_path):
+        raise ValueError("checkpoint {} not exist.".format(ckpt_path))
+    model.load_state_dict(torch.load(ckpt_path))

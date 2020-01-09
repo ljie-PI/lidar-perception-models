@@ -6,20 +6,19 @@
 TargetAssigner::TargetAssigner(const pointpillars::PointPillarsConfig& config) {
   match_thr_ = config.anchor_config().match_thr();
   unmatch_thr_ = config.anchor_config().unmatch_thr();
-  output_factor_ = config.anchor_config().output_factor();
 
   anchor_size_cnt_ = config.anchor_config().anchor_size_size();
   for (int i = 0; i < anchor_size_cnt_; ++i) {
     anchor_sizes_.push_back(config.anchor_config().anchor_size(i));
   }
 
-  sample_unmatch_anchor_ = config.anchor_config().sample_unmatch_anchor();
+  sample_unmatch_anchor_phase_ = config.anchor_config().sample_unmatch_anchor_phase();
   sample_unmatch_ratio_ = config.anchor_config().sample_unmatch_ratio();
   unmatch_anchor_sample_random_ = std::make_shared<UniformDistRandom>(0.0, 1.0);
 
-  float x_res = config.voxel_config().x_resolution() * output_factor_;
-  float y_res = config.voxel_config().y_resolution() * output_factor_;
-  float z_res = config.voxel_config().z_resolution() * output_factor_;
+  float x_res = config.voxel_config().x_resolution();
+  float y_res = config.voxel_config().y_resolution();
+  float z_res = config.voxel_config().z_resolution();
   float x_range_min = config.voxel_config().x_range_min();
   float x_range_max = config.voxel_config().x_range_max();
   float y_range_min = config.voxel_config().y_range_min();
@@ -129,6 +128,9 @@ bool TargetAssigner::GenerateAnchors(const LidarPointCloud& point_cloud,
         voxel_mapping_->VoxelCenter(x_offset, y_offset, 0, &x_center, &y_center, &z_center);
         const pointpillars::AnchorSize& anchor_size = anchor_sizes_[size_idx];
 
+        float start_offset = 
+            (((y_offset * voxel_mapping_->XSize + x_offset) * anchor_size_cnt_) + size_idx) * 2;
+
         // length matches x axis, width match y axis
         if (!AnchorIsEmpty(x_center, y_center,
                            anchor_size.length(), anchor_size.width(),
@@ -140,6 +142,7 @@ bool TargetAssigner::GenerateAnchors(const LidarPointCloud& point_cloud,
           anchor.set_width(anchor_sizes_[size_idx].width());
           anchor.set_height(anchor_sizes_[size_idx].height());
           anchor.set_rotation(0);
+          anchor.set_offset(start_offset);
           anchors->emplace_back(anchor);
         }
 
@@ -154,6 +157,7 @@ bool TargetAssigner::GenerateAnchors(const LidarPointCloud& point_cloud,
           anchor.set_width(anchor_sizes_[size_idx].width());
           anchor.set_height(anchor_sizes_[size_idx].height());
           anchor.set_rotation(M_PI_2);
+          anchor.set_offset(start_offset + 1);
           anchors->emplace_back(anchor);
         }
       }
@@ -171,7 +175,8 @@ bool TargetAssigner::GenerateRpnLabels(const Label& label,
     BoundingBox box = bboxes[lid];
     pointpillars::Label pp_label;
     pp_label.set_label_id(lid);
-    pp_label.set_type(box.type);
+    // type in raw data start from 0, but in pointpillars 0 is used for background
+    pp_label.set_type(box.type + 1);
     pp_label.set_center_x(static_cast<float>(box.center_x));
     pp_label.set_center_y(static_cast<float>(box.center_y));
     pp_label.set_center_z(static_cast<float>(box.center_z));
@@ -259,7 +264,7 @@ bool TargetAssigner::MatchAnchorLabel(const std::vector<pointpillars::Anchor>& a
   // anchors didn't match any labels
   for (auto unmatch_aid : unmatch_anchors_ids) {
     bool add = true;
-    if (sample_unmatch_anchor_) {
+    if (sample_unmatch_anchor_phase_ == pointpillars::ProcessPhase::PREPROCESS) {
       double randnum = unmatch_anchor_sample_random_->Generate();
       if (randnum >= sample_unmatch_ratio_) {
         add = false;
