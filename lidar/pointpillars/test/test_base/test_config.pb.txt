@@ -1,0 +1,77 @@
+voxel_config: {
+  x_resolution: 0.1
+  y_resolution: 0.1
+  z_resolution: 5
+  x_range_min: -30
+  x_range_max: 30
+  y_range_min: -30
+  y_range_max: 30
+  z_range_min: -1.5
+  z_range_max: 3.5
+  num_voxels: 10
+  num_points_per_voxel: 10
+}
+
+anchor_config {
+  match_thr: 0.5
+  unmatch_thr: 0.35
+  anchor_size {
+    length: 0.2
+    width: 0.1
+    height: 2.0
+  }
+  anchor_size {
+    length: 0.3
+    width: 0.2
+    height: 2.0
+  }
+  unmatch_anchor_sample_ratio: 0.0
+}
+
+model_config: {
+  model_name: "pointpillars"
+  use_reflection: false
+  pillar_feat_filters: 64
+  num_class: 5
+  rpn_layer_num: 3
+  rpn_layer_num: 5
+  rpn_layer_num: 5
+  rpn_layer_strides: 1
+  rpn_layer_strides: 2
+  rpn_layer_strides: 2
+  rpn_num_filters: 64
+  rpn_num_filters: 128
+  rpn_num_filters: 256
+  rpn_upsample_strides: 1
+  rpn_upsample_strides: 2
+  rpn_upsample_strides: 4
+  rpn_upsample_filters: 128
+  rpn_upsample_filters: 128
+  rpn_upsample_filters: 128
+  num_anchor_per_loc: 6
+  use_dir_class: true
+  nms_score_threshold: 0.1
+  nms_iou_threshold: 0.5
+}
+
+train_config {
+  batch_size: 2
+  train_epochs: 1
+  steps_per_eval: 1000
+  steps_to_save_chpts: 1000
+  max_keep_chpts: 5
+  data_load_threads: 8
+  optimizer: "adam"
+  learning_rate: 0.0002
+  lr_decay: 0.8
+  focal_alpha: 0.25
+  focal_gamma: 2
+  sample_anchor_size: 512
+  max_pos_anchor_size: 100
+  max_neg_match_anchor_size: 200
+  pos_class_weight: 1.0
+  neg_class_weight: 1.0
+  cls_loss_weight: 1.0
+  reg_loss_weight: 2.0
+  dir_loss_weight: 0.2
+}
