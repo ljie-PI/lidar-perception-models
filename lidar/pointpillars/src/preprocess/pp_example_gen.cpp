@@ -29,6 +29,12 @@ int main(int argc, char** argv) {
 
   PreProcessor preprocessor(pp_config);
 
+  FileUtil::EnsureDirectory(FLAGS_output_dir);
+  if (FLAGS_output_anchor) {
+    FileUtil::EnsureDirectory(FLAGS_output_dir + "/pos_anchors");
+    FileUtil::EnsureDirectory(FLAGS_output_dir + "/neg_anchors");
+  }
+
   std::vector<std::string> pcd_files;
   FileUtil::GetFileList(FLAGS_input_pcd_dir, ".pcd", &pcd_files);
   for (auto &pcd_file : pcd_files) {
@@ -39,7 +45,8 @@ int main(int argc, char** argv) {
       std::cerr << "Label file(" << label_file << ") does not exist" << std::endl;
       return -1;
     }
-    if (!preprocessor.Process(example_id, pcd_file, label_file, FLAGS_output_dir)) {
+    std::cout << "processing example " << example_id << std::endl;
+    if (!preprocessor.Process(example_id, pcd_file, label_file, FLAGS_output_dir, FLAGS_output_anchor)) {
       std::cerr << "Failed to process example: " << example_id << std::endl;
       continue;
     }

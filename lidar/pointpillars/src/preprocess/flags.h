@@ -2,7 +2,7 @@
 #include <gflags/gflags.h>
 
 static bool ValidateStringNotEmpty(const char *flagname, const std::string &value) {
-  if (!value.empty()) {
+  if (value.empty()) {
     std::cerr << flagname << " is not specified!" << std::endl;
     return false;
   }
@@ -17,3 +17,4 @@ DEFINE_string(config_file, "", "config file for PointPillars model");
 DEFINE_validator(config_file, &ValidateStringNotEmpty);
 DEFINE_string(output_dir, "", "directory of output processed examples");
 DEFINE_validator(output_dir, &ValidateStringNotEmpty);
+DEFINE_bool(output_anchor, false, "whether to output anchor results");

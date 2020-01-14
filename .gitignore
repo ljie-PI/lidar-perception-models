@@ -6,9 +6,9 @@ tags
 *.iml
 *.swp
 *.swo
-data/
+data
 log
-logs/
+logs
 *.log
 __pycache__
 *.pyc

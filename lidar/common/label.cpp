@@ -58,6 +58,7 @@ bool Label::FromFile(const std::string &label_file) {
   if (!FileUtil::ReadLines(label_file, &lines)) {
     return false;
   }
+  bboxes_.clear();
   for (const auto &line : lines) {
     bboxes_.push_back(std::move(ParseBox(line)));
     ++box_cnt_;
@@ -97,6 +98,7 @@ bool Label::ToFile(const std::string &label_file) const {
     );
   }
   FileUtil::WriteLines(lines, label_file);
+  return false;
 }
 
 const std::vector<BoundingBox> &Label::BoundingBoxes() const {

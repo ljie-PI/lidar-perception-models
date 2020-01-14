@@ -75,7 +75,7 @@ TEST_F(TargetAssignerTest, assign_test) {
   std::vector<pointpillars::Anchor> pos_anchors;
   for (int i = 0; i < pp_example.anchor_size(); ++i) {
     auto& anchor = pp_example.anchor(i);
-    if (anchor.is_postive()) {
+    if (anchor.is_positive()) {
       pos_anchors.push_back(anchor);
       std::cout << "anchor " << i << ": "
                 << ", center_x = " << anchor.center_x()

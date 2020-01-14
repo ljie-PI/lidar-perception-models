@@ -43,7 +43,7 @@ message Anchor {
   optional int32 target_label = 9 [default = -1];
 
   // whether it's a postive anchor
-  optional bool is_postive = 10 [default = false];
+  optional bool is_positive = 10 [default = false];
 }
 
 message Label {

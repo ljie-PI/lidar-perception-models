@@ -291,7 +291,7 @@ bool TargetAssigner::MatchAnchorLabel(const std::vector<pointpillars::Anchor>& a
       pointpillars::Anchor* anchor = example->add_anchor();
       anchor->CopyFrom(anchors[unmatch_aid]);
       anchor->set_target_label(-1);
-      anchor->set_is_postive(false);
+      anchor->set_is_positive(false);
     }
   }
 
@@ -310,13 +310,13 @@ bool TargetAssigner::MatchAnchorLabel(const std::vector<pointpillars::Anchor>& a
     anchor->CopyFrom(anchors[anch_id]);
     anchor->set_target_label(most_match_label);
     if (match_score >= match_thr_) {
-      anchor->set_is_postive(true);
+      anchor->set_is_positive(true);
       // std::cout << "add anchor: " << anch_id << ", label: " << most_match_label << std::endl;
       // std::cout << "center_x = " << anchor->center_x() << ", center_y = " << anchor->center_y()
       //           << ", length = " << anchor->length() << ", width = " << anchor->width() << ", rotation = " << anchor->rotation() << std::endl;
       added_labels.insert(most_match_label);
     } else {
-      anchor->set_is_postive(false);
+      anchor->set_is_positive(false);
     }
   }
 
@@ -329,7 +329,7 @@ bool TargetAssigner::MatchAnchorLabel(const std::vector<pointpillars::Anchor>& a
       pointpillars::Anchor* anchor = example->add_anchor();
       anchor->CopyFrom(anchors[anch_id]);
       anchor->set_target_label(lab_id);
-      anchor->set_is_postive(true);
+      anchor->set_is_positive(true);
     }
   }
 

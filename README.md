@@ -18,7 +18,7 @@ Models Used in Neolix Perception Module
 
 ### Build Tools
 ```
-cd ${PROJECT_ROOT}/lidar/tools
+cd ${PROJECT_ROOT}/
 mkdir build && cd build
 cmake ..
 make -j8
@@ -26,7 +26,7 @@ make -j8
 
 ### Data Augmentation
 ```
-cd ${PROJECT_ROOT}/lidar/tools/build
+cd ${PROJECT_ROOT}/build
 bin/data_aug \
   --input_pcd_dir=/nfs/nas/Perception/cnnseg_train_val_29719/train/pcd \
   --input_label_dir=/nfs/nas/Perception/cnnseg_train_val_29719/train/label \
@@ -55,7 +55,7 @@ scripts/merge_data_aug.py \
 ### Visualization
 **To visualize segmentation result**
 ```
-cd ${PROJECT_ROOT}/lidar/tools/build
+cd ${PROJECT_ROOT}/build
 bin/seg_view \
   --input_pcd_dir=/path/to/input_pcd_dir \
   --input_label_dir=/path/to/input_label_dir \
@@ -65,7 +65,7 @@ Please refer to `${PROJECT_ROOT}/lidar/tools/src/visualization/seg_viz_flags.h` 
 
 **To visualize tracking result**
 ```
-cd ${PROJECT_ROOT}/lidar/tools/build
+cd ${PROJECT_ROOT}/build
 bin/track_view \
   --input_pcd_dir=/path/to/input_pcd_dir \
   --input_pose_dir=/path/to/input_pose_dir \
@@ -78,7 +78,7 @@ Please refer to `${PROJECT_ROOT}/lidar/tools/src/visualization/track_viz_flags.h
 
 **To generate cnnseg features**
 ```
-cd ${PROJECT_ROOT}/lidar/tools/build
+cd ${PROJECT_ROOT}/build
 bin/cnnseg_feat_gen \
   --input_pcd_dir=/data/perception/cnnseg/train_merged/pcd \
   --output_dir=/data/perception/cnnseg/train_merged/cnnseg_feature \
@@ -118,4 +118,17 @@ cd ${PROJECT_ROOT}/lidar/cnnseg/scripts
 ```
 cd ${PROJECT_ROOT}/lidar/cnnseg/scripts
 ./model_convert.py --config_file=./data/config/baseline.config.json --model_dir=./data/models/aug_baseline_concat3
+```
+
+### PointPillars Model
+
+**To preprocess data for training**
+```
+cd ${PROJECT_ROOT}/build
+bin/pp_example_gen \
+  --config_file=../lidar/pointpillars/config/pp_config.pb.txt \
+  --input_pcd_dir=/data/perception/pointpillars/test/pcd \
+  --input_label_dir=/data/perception/pointpillars/test/labels \
+  --output_dir=/data/perception/pointpillars/test/preprocess \
+  --output_anchor
 ```

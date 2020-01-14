@@ -39,7 +39,7 @@ VoxelGenerator::VoxelGenerator(const pointpillars::PointPillarsConfig& config)
   log_point_num_ = config.voxel_config().log_point_num();
   if (log_point_num_) {
     FileUtil::EnsureDirectory("log");
-    voxel_num_ofs_.open("log/point_num");
+    point_num_ofs_.open("log/point_num");
     if (!point_num_ofs_.is_open()) {
       std::cerr << "Failed to open log/point_num for write" << std::endl;
       log_point_num_ = false;
@@ -55,6 +55,14 @@ VoxelGenerator::VoxelGenerator(const pointpillars::PointPillarsConfig& config)
 }
 
 VoxelGenerator::~VoxelGenerator() {
+  if (voxel_num_ofs_.is_open()) {
+    voxel_num_ofs_.flush();
+    voxel_num_ofs_.close();
+  }
+  if (point_num_ofs_.is_open()) {
+    point_num_ofs_.flush();
+    point_num_ofs_.close();
+  }
 }
 
 /**
@@ -111,6 +119,9 @@ bool VoxelGenerator::Generate(const LidarPointCloud& point_cloud, pointpillars::
       voxel_idxs.push_back(voxel_num++);
     }
   }
+  if (log_voxel_num_) {
+    voxel_num_ofs_ << voxel_num << std::endl;
+  }
 
   if (voxel_num > num_voxels_) {
     // number of non-empty voxels less then num_voxels_,
@@ -131,6 +142,10 @@ bool VoxelGenerator::Generate(const LidarPointCloud& point_cloud, pointpillars::
 
     auto& point_idxs = voxel_points[voxel_idx];
     int point_size = point_idxs.size();
+
+    if (log_point_num_) {
+      point_num_ofs_ << point_size << "\n";
+    }
     if (point_size > num_points_per_voxel_) {
       // more points than num_points_per_voxel_, will sample points
       rand_shuffle_->Shuffle(point_idxs.begin(), point_idxs.end());
@@ -182,4 +197,6 @@ bool VoxelGenerator::Generate(const LidarPointCloud& point_cloud, pointpillars::
   example->mutable_voxel()->add_shape(num_points_per_voxel_);
   example->mutable_voxel()->add_shape(point_dim_);
   example->mutable_voxel_points()->add_shape(voxel_num);
+
+  return true;
 }

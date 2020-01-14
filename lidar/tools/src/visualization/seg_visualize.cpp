@@ -15,6 +15,7 @@ void visualize(pcl::visualization::PCLVisualizer &visualizer,
                const std::string &id, double spin_times) {
   std::string pcd_path = FLAGS_input_pcd_dir + "/" + id + ".pcd";
   std::string label_path = FLAGS_input_label_dir + "/" + id + ".label";
+  std::string pred_path = FLAGS_input_label_dir + "/" + id + ".pred";
 
   if (visualizer.wasStopped()) {
     visualizer.resetStoppedFlag();
@@ -34,8 +35,9 @@ void visualize(pcl::visualization::PCLVisualizer &visualizer,
 
   // add labels
   Label label;
-  if (!label.FromFile(label_path)) {
-    std::cerr << "Failed to load label file: " << label_path << std::endl;
+  if (!label.FromFile(label_path) && !label.FromFile(pred_path)) {
+    std::cerr << "Failed to load label file " << label_path
+              << " or " << pred_path << std::endl;
     return;
   }
   std::vector<BoundingBox> bboxes = label.BoundingBoxes();

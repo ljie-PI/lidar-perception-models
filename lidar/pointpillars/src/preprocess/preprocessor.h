@@ -10,10 +10,15 @@ class PreProcessor {
   ~PreProcessor() = default;
 
   bool Process(const std::string& example_id, const std::string& pcd_file,
-               const std::string& label_file, const std::string& output_dir);
+               const std::string& label_file, const std::string& output_dir,
+               const bool output_anchor=false);
 
  private:
   bool SaveExample(const pointpillars::Example& example,
+                   const std::string& example_id,
+                   const std::string& output_dir);
+
+  bool SaveAnchors(const pointpillars::Example& example,
                    const std::string& example_id,
                    const std::string& output_dir);
 
