@@ -31,7 +31,7 @@ class TargetAssigner {
   bool AnchorIsEmpty(float center_x, float center_y,
                      float length, float width, int* voxel_occupy_acc);
 
-  float CalculateMatchScore(const pointpillars::Anchor& anchor, Box2D& label_box2d);
+  float CalculateMatchScore(Box2D& anchor_box2d, Box2D& label_box2d);
 
   float match_thr_;
   float unmatch_thr_;
@@ -39,9 +39,11 @@ class TargetAssigner {
   std::vector<pointpillars::AnchorSize> anchor_sizes_;
   int anchor_size_cnt_;
 
-  pointpillars::ProcessPhase sample_unmatch_anchor_phase_;
   float sample_unmatch_ratio_;
   std::shared_ptr<UniformDistRandom> unmatch_anchor_sample_random_;
 
   std::shared_ptr<VoxelMapping> voxel_mapping_;
+
+  friend class TargetAssignerTest_voxel_occupy_test_Test;
+  friend class TargetAssignerTest_assign_test_Test;
 };

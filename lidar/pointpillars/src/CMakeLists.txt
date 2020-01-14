@@ -1,7 +1,6 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.10)
 
 include(${CMAKE_SOURCE_DIR}/cmake/GFlags.cmake)
-include(${CMAKE_SOURCE_DIR}/cmake/GTest.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/Boost.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/PCL.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/Protobuf.cmake)
@@ -11,7 +10,6 @@ include_directories(${CMAKE_SOURCE_DIR}/lidar)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/../proto)
-message(STATUS "INCLUDE_DIRECTORIES: ${CMAKE_CURRENT_BINARY_DIR}/../proto")
 
 link_directories(${CMAKE_BINARY_DIR}/lib)
 
@@ -30,3 +28,4 @@ target_link_libraries(${PP_EXAMPLE_GEN}
         ${Protobuf_LIBRARIES}
         ${Boost_LIBRARIES}
         ${PCL_LIBRARIES})
+add_dependencies(${PP_EXAMPLE_GEN} pp_proto_defs)

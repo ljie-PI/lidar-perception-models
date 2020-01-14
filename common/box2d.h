@@ -29,8 +29,8 @@ class Box2D {
     static int count = 0;
     Corners corners;
     corners <<
-        -length * 0.5, length * 0.5, -length * 0.5, length * 0.5,
-        -width * 0.5, -width * 0.5, width * 0.5, width * 0.5;
+        -length * 0.5, -length * 0.5, length * 0.5, length * 0.5,
+        -width * 0.5, width * 0.5, width * 0.5, -width * 0.5;
     Corners rot_corners = rot_mat * corners;
     for (int i = 0; i < 4; ++i) {
       rot_corners(0, i) = rot_corners(0, i) + x;

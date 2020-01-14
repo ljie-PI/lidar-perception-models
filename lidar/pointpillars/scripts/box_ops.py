@@ -138,9 +138,9 @@ def corners_nd(dims, origin=0.5):
     # for 3d boxes, please draw them by your hand.
     if ndim == 2:
         # generate clockwise box corners
-        corners_norm = corners_norm[[0, 2, 3, 1]]
+        corners_norm = corners_norm[[0, 1, 3, 2]]
     elif ndim == 3:
-        corners_norm = corners_norm[[0, 2, 3, 1, 4, 6, 7, 5]]
+        corners_norm = corners_norm[[0, 1, 3, 2, 4, 5, 7, 6]]
     corners_norm = corners_norm - np.array(origin, dtype=dtype)
     corners_norm = torch.from_numpy(corners_norm).type_as(dims)
     corners = dims.view(-1, 1, ndim) * corners_norm.view(1, 2**ndim, ndim)

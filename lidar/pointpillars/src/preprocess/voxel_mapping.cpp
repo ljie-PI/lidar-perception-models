@@ -15,11 +15,16 @@ VoxelMapping::VoxelMapping(float x_res, float x_min, float x_max,
 }
 
 int VoxelMapping::VoxelIndexToOffset(int x_idx, int y_idx, int z_idx) {
+  if (x_idx < 0 || x_idx >= x_size_ ||
+      y_idx < 0 || y_idx >= y_size_ ||
+      x_idx < 0 || z_idx >= z_size_) {
+        return -1;
+  }
   return (x_idx * y_size_ + y_idx) * z_size_ + z_idx;
 }
 
 bool VoxelMapping::OffsetToVoxelIndex(int offset, int* x_idx, int* y_idx, int* z_idx) {
-  if (offset < 0 || offset > size_) {
+  if (offset < 0 || offset >= size_) {
     return false;
   }
   *z_idx = offset % z_size_;
@@ -40,14 +45,14 @@ int VoxelMapping::MapToOffset(float x, float y, float z) {
 
 bool VoxelMapping::MapToVoxelIndex(float x, float y, float z,
                                    int* x_idx, int* y_idx, int* z_idx) {
-  if (x < x_min_ || x > x_max_ ||
-      y < y_min_ || y > y_max_ ||
-      z < z_min_ || z > z_max_) {
+  if (x < x_min_ || x >= x_max_ ||
+      y < y_min_ || y >= y_max_ ||
+      z < z_min_ || z >= z_max_) {
     return false;
   }
-  *x_idx = ceil((x - x_min_) / x_res_);
-  *y_idx = ceil((y - y_min_) / y_res_);
-  *z_idx = ceil((z - z_min_) / z_res_);
+  *x_idx = floor((x - x_min_) / x_res_);
+  *y_idx = floor((y - y_min_) / y_res_);
+  *z_idx = floor((z - z_min_) / z_res_);
   return true;
 }
 

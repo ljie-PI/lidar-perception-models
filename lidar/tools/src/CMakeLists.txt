@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.10)
 
 include(${CMAKE_SOURCE_DIR}/cmake/GFlags.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/GTest.cmake)

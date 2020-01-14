@@ -18,7 +18,7 @@ message VoxelConfig {
   required float z_range_min = 8;
   required float z_range_max = 9;
   required int32 num_voxels = 10;
-  required int32 num_points_per_voxels = 11;
+  required int32 num_points_per_voxel = 11;
   optional bool save_points = 12 [default=false];
   optional bool log_voxel_num = 13 [default=false]; // enable to output voxel_num distribution
   optional bool log_point_num = 14 [default=false]; // enable to output piont_num distribution
@@ -38,23 +38,25 @@ message AnchorConfig {
 
   // pre-defined anchor size
   repeated AnchorSize anchor_size = 3;
+
+  // unmatch anchor sample ratio in pre-process phase
+  optional float unmatch_anchor_sample_ratio = 4;
 }
 
 message ModelConfig {
   required string model_name = 1;
   required bool use_reflection = 2;
-  required int32 pillar_feat_dim = 3;
-  repeated int32 pillar_feat_filters = 4;
-  required int32 num_class = 5;
-  repeated int32 rpn_layer_num = 6;
-  repeated int32 rpn_layer_strides = 7;
-  repeated int32 rpn_num_filters = 8;
-  repeated int32 rpn_upsample_strides = 9;
-  repeated int32 rpn_upsample_filters = 10;
-  required int32 num_anchor_per_loc = 11;
-  required bool use_dir_class = 12;
-  required float nms_score_threshold = 13;
-  required float nms_iou_threshold = 14;
+  repeated int32 pillar_feat_filters = 3;
+  required int32 num_class = 4;
+  repeated int32 rpn_layer_num = 5;
+  repeated int32 rpn_layer_strides = 6;
+  repeated int32 rpn_num_filters = 7;
+  repeated int32 rpn_upsample_strides = 8;
+  repeated int32 rpn_upsample_filters = 9;
+  required int32 num_anchor_per_loc = 10;
+  required bool use_dir_class = 11;
+  required float nms_score_threshold = 12;
+  required float nms_iou_threshold = 13;
 }
 
 message TrainConfig {

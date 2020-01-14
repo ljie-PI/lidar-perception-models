@@ -16,7 +16,7 @@ struct Coordinate {
 
 class VoxelGenerator {
  public:
-  VoxelGenerator(const pointpillars::PointPillarsConfig& config);
+  explicit VoxelGenerator(const pointpillars::PointPillarsConfig& config);
   ~VoxelGenerator();
 
   bool Generate(const LidarPointCloud& point_cloud, pointpillars::Example *example);
@@ -24,7 +24,7 @@ class VoxelGenerator {
  private:
   std::shared_ptr<VoxelMapping> voxel_mapping_;
   int num_voxels_;
-  int num_points_per_voxels_;
+  int num_points_per_voxel_;
   bool save_points_;
 
   bool log_voxel_num_;
@@ -35,10 +35,10 @@ class VoxelGenerator {
 
   bool use_reflection_;
 
-  pointpillars::ProcessPhase padding_phrase_;
-
   std::shared_ptr<RandomShuffle> rand_shuffle_;
 
-  const int COORD_DIM = 3;
-  const int POINT_DIM = 8;
+  int coord_dim_;
+  int point_dim_;
+
+  friend class VoxelGeneratorTest_read_config_test_Test;
 };

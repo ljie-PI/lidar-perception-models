@@ -32,7 +32,7 @@ message VoxelPoints {
 message Anchor {
   required float center_x = 1;
   required float center_y = 2;
-  required float center_z = 3
+  required float center_z = 3;
   required float length = 4;
   required float width = 5;
   required float height = 6;
