@@ -12,21 +12,19 @@ message Point {
 
 message Voxel {
   repeated float data = 1 [packed=true];
-
-  // shapes are [num_max_voxel, num_max_points, feature_dim]
-  repeated int32 shape = 2;
+  required int32 num_voxel = 2;
+  required int32 feature_dim = 3;
 }
 
 message VoxelCoord {
   repeated int32 data = 1 [packed=true];
-
-  // shapes are [num_nonempty_voxel, coord_dim]
-  repeated int32 shape = 2;
+  required int32 num_voxel = 2;
+  required int32 coord_dim = 3;
 }
 
 message VoxelPoints {
   repeated int32 data = 1 [packed=true];
-  repeated int32 shape = 2;
+  required int32 num_voxel = 2;
 }
 
 message Anchor {
