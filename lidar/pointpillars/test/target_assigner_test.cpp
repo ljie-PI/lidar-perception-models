@@ -80,8 +80,10 @@ TEST_F(TargetAssignerTest, assign_test) {
       std::cout << "anchor " << i << ": "
                 << ", center_x = " << anchor.center_x()
                 << ", center_y = " << anchor.center_y()
+                << ", center_z = " << anchor.center_z()
                 << ", length = " << anchor.length()
                 << ", width = " << anchor.width()
+                << ", height = " << anchor.height()
                 << ", rotation = " << anchor.rotation()
                 << ", target_label = " << anchor.target_label() << std::endl;
     }
@@ -98,7 +100,7 @@ TEST_F(TargetAssignerTest, assign_test) {
     std::cout << "label " << label.label_id() << ": "
               << ", center_x = " << label.center_x()
               << ", center_y = " << label.center_y()
-              << ", center_z = " << label.center_x()
+              << ", center_z = " << label.center_z()
               << ", length = " << label.length()
               << ", width = " << label.width()
               << ", height = " << label.height()

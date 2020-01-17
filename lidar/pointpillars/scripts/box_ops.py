@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import numpy as np
+import torch
 
 BOX_ENCODE_SIZE = 7
 
@@ -17,7 +18,7 @@ def encode_box(boxes, anchors):
     wt = np.log(wg / wa)
     ht = np.log(hg / ha)
     rt = rg - ra
-    return np.concatenate([xt, yt, zt, wt, lt, ht, rt], axis=-1)
+    return np.concatenate([xt, yt, zt, lt, wt, ht, rt], axis=-1)
 
 
 def encode_box_torch(boxes, anchors):
@@ -33,7 +34,7 @@ def encode_box_torch(boxes, anchors):
     wt = torch.log(wg / wa)
     ht = torch.log(hg / ha)
     rt = rg - ra
-    return torch.cat([xt, yt, zt, wt, lt, ht, rt], dim=-1)
+    return torch.cat([xt, yt, zt, lt, wt, ht, rt], dim=-1)
 
 
 def decode_box(box_encodings, anchors):
@@ -49,12 +50,12 @@ def decode_box(box_encodings, anchors):
     hg = np.exp(ht) * ha
     rg = rt + ra
     zg = zg - hg / 2
-    return np.concatenate([xg, yg, zg, wg, lg, hg, rg], axis=-1)
+    return np.concatenate([xg, yg, zg, lg, wg, hg, rg], axis=-1)
 
 
 def decode_box_torch(box_encodings, anchors):
-    xa, ya, za, wa, la, ha, ra = torch.split(anchors, 1, dim=-1)
-    xt, yt, zt, wt, lt, ht, rt = torch.split(box_encodings, 1, dim=-1)
+    xa, ya, za, la, wa, ha, ra = torch.split(anchors, 1, dim=-1)
+    xt, yt, zt, lt, wt, ht, rt = torch.split(box_encodings, 1, dim=-1)
     za = za + ha / 2
     diagonal = torch.sqrt(la**2 + wa**2)
     xg = xt * diagonal + xa
@@ -65,7 +66,7 @@ def decode_box_torch(box_encodings, anchors):
     hg = torch.exp(ht) * ha
     rg = rt + ra
     zg = zg - hg / 2
-    return torch.cat([xg, yg, zg, wg, lg, hg, rg], dim=-1)
+    return torch.cat([xg, yg, zg, lg, wg, hg, rg], dim=-1)
 
 
 def encode_direction_class(label_data):
@@ -74,31 +75,12 @@ def encode_direction_class(label_data):
     return dir_cls_targets
 
 
-def center_to_corner_box2d(centers, dims, angles=None, origin=0.5):
-    """convert locations, dimensions and angles to corners
-    Args:
-        centers (float array, shape=[N, 2]): locations in label.
-        dims (float array, shape=[N, 2]): dimensions in label.
-        angles (float array, shape=[N]): rotation_y in label.
-    Returns:
-        [type]: [description]
-    """
-    corners = corners_nd(dims, origin=origin)
-    if angles is not None:
-        corners = rotation_2d(corners, angles)
-    corners += centers.view(-1, 1, 2)
-    return corners
-
-
-def center_to_minmax_2d_0_5(centers, dims):
+def center_to_minmax_2d(centers, dims, origin=0.5):
     return np.concatenate([centers - dims / 2, centers + dims / 2], axis=-1)
 
 
-def center_to_minmax_2d(centers, dims, origin=0.5):
-    if origin == 0.5:
-        return center_to_minmax_2d_0_5(centers, dims)
-    corners = center_to_corner_box2d(centers, dims, origin=origin)
-    return corners[:, [0, 2]].reshape([-1, 4])
+def center_to_minmax_2d_torch(centers, dims, origin=0.5):
+    return torch.cat([centers - dims / 2, centers + dims / 2], dim=-1)
 
 
 def torch_to_np_dtype(ttype):
@@ -155,8 +137,8 @@ def rotation_2d(points, angles):
     Returns:
         float array: same shape as points
     """
-    rot_sin = torch.sin(angles)
-    rot_cos = torch.cos(angles)
+    rot_sin = torch.sin(-angles)
+    rot_cos = torch.cos(-angles)
     rot_mat_T = torch.stack(
         [torch.stack([rot_cos, -rot_sin]),
          torch.stack([rot_sin, rot_cos])])

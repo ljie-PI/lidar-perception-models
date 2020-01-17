@@ -1,0 +1,5297 @@
+voxel {
+  data: 0.08
+  data: 0.24
+  data: 1.8
+  data: 0.252982199
+  data: 0.0299988538
+  data: -0.0100000054
+  data: 0.799999952
+  data: 0.05
+  data: 0.2
+  data: 1.3
+  data: 0.206155285
+  data: -1.14366412e-06
+  data: -0.049999997
+  data: 0.299999952
+  data: 0.02
+  data: 0.23
+  data: 0.1
+  data: 0.230867922
+  data: -0.0300011449
+  data: -0.0199999958
+  data: -0.9
+  data: 0.06
+  data: 0.26
+  data: 0.8
+  data: 0.266833276
+  data: 0.00999885425
+  data: 0.00999999
+  data: -0.199999988
+  data: 0.08
+  data: 0.23
+  data: 0.1
+  data: 0.243515924
+  data: 0.0299988538
+  data: -0.0199999958
+  data: -0.9
+  data: 0.02
+  data: 0.24
+  data: 1.8
+  data: 0.240831882
+  data: -0.0300011449
+  data: -0.0100000054
+  data: 0.799999952
+  data: 0.02
+  data: 0.23
+  data: 0.1
+  data: 0.230867922
+  data: -0.0300011449
+  data: -0.0199999958
+  data: -0.9
+  data: 0.06
+  data: 0.24
+  data: 1.8
+  data: 0.247386336
+  data: 0.00999885425
+  data: -0.0100000054
+  data: 0.799999952
+  data: 0.03
+  data: 0.2
+  data: 1.3
+  data: 0.202237487
+  data: -0.0200011451
+  data: -0.049999997
+  data: 0.299999952
+  data: 0.01
+  data: 0.21
+  data: 0.1
+  data: 0.210237965
+  data: -0.0400011465
+  data: -0.0400000066
+  data: -0.9
+  data: 0.11
+  data: 0.21
+  data: 0.1
+  data: 0.23706539
+  data: -0.0399996191
+  data: -0.0400000066
+  data: -0.9
+  data: 0.12
+  data: 0.23
+  data: 0.1
+  data: 0.259422421
+  data: -0.0299996212
+  data: -0.0199999958
+  data: -0.9
+  data: 0.18
+  data: 0.24
+  data: 1.8
+  data: 0.3
+  data: 0.0300003886
+  data: -0.0100000054
+  data: 0.799999952
+  data: 0.17
+  data: 0.27
+  data: 2.8
+  data: 0.31906113
+  data: 0.0200003833
+  data: 0.0200000107
+  data: 1.8
+  data: 0.16
+  data: 0.26
+  data: 0.8
+  data: 0.305286735
+  data: 0.0100003779
+  data: 0.00999999
+  data: -0.199999988
+  data: 0.13
+  data: 0.2
+  data: 1.3
+  data: 0.238537207
+  data: -0.0199996233
+  data: -0.049999997
+  data: 0.299999952
+  data: 0.11
+  data: 0.31
+  data: 0.1
+  data: 0.32893768
+  data: -0.0399996191
+  data: -0.0400003791
+  data: -0.9
+  data: 0.12
+  data: 0.33
+  data: 0.1
+  data: 0.351141
+  data: -0.0299996212
+  data: -0.0200003684
+  data: -0.9
+  data: 0.18
+  data: 0.34
+  data: 1.8
+  data: 0.384707689
+  data: 0.0300003886
+  data: -0.0100003779
+  data: 0.799999952
+  data: 0.17
+  data: 0.37
+  data: 2.8
+  data: 0.407185465
+  data: 0.0200003833
+  data: 0.0199996233
+  data: 1.8
+  data: 0.16
+  data: 0.36
+  data: 0.8
+  data: 0.393954307
+  data: 0.0100003779
+  data: 0.00999963284
+  data: -0.199999988
+  data: 0.13
+  data: 0.3
+  data: 1.3
+  data: 0.326955676
+  data: -0.0199996233
+  data: -0.0500003695
+  data: 0.299999952
+  data: 0.21
+  data: 0.31
+  data: 0.1
+  data: 0.374432921
+  data: -0.0400000066
+  data: -0.0400003791
+  data: -0.9
+  data: 0.22
+  data: 0.33
+  data: 0.1
+  data: 0.396610647
+  data: -0.0300000012
+  data: -0.0200003684
+  data: -0.9
+  data: 0.28
+  data: 0.34
+  data: 1.8
+  data: 0.440454304
+  data: 0.0300000012
+  data: -0.0100003779
+  data: 0.799999952
+  data: 0.27
+  data: 0.37
+  data: 2.8
+  data: 0.458039314
+  data: 0.0200000107
+  data: 0.0199996233
+  data: 1.8
+  data: 0.26
+  data: 0.36
+  data: 0.8
+  data: 0.444072068
+  data: 0.00999999
+  data: 0.00999963284
+  data: -0.199999988
+  data: 0.23
+  data: 0.3
+  data: 1.3
+  data: 0.378021181
+  data: -0.0199999958
+  data: -0.0500003695
+  data: 0.299999952
+  data: 0.41
+  data: 0.21
+  data: 0
+  data: 0.460651726
+  data: -0.0400007665
+  data: -0.0400000066
+  data: -1
+  data: 0.42
+  data: 0.23
+  data: 0.1
+  data: 0.478852779
+  data: -0.0300007761
+  data: -0.0199999958
+  data: -0.9
+  data: 0.47
+  data: 0.27
+  data: 2.8
+  data: 0.542033195
+  data: 0.0199992359
+  data: 0.0200000107
+  data: 1.8
+  data: 0.46
+  data: 0.26
+  data: 0.8
+  data: 0.528393805
+  data: 0.00999924541
+  data: 0.00999999
+  data: -0.199999988
+  data: 0.43
+  data: 0.2
+  data: 1.3
+  data: 0.47423625
+  data: -0.0200007558
+  data: -0.049999997
+  data: 0.299999952
+  data: 0.51
+  data: 0.21
+  data: 0
+  data: 0.551543236
+  data: -0.0400011539
+  data: -0.0400000066
+  data: -1
+  data: 0.52
+  data: 0.23
+  data: 0.1
+  data: 0.568594754
+  data: -0.0300011635
+  data: -0.0199999958
+  data: -0.9
+  data: 0.58
+  data: 0.24
+  data: 1.8
+  data: 0.62769419
+  data: 0.0299988389
+  data: -0.0100000054
+  data: 0.799999952
+  data: 0.57
+  data: 0.27
+  data: 2.8
+  data: 0.63071388
+  data: 0.0199988484
+  data: 0.0200000107
+  data: 1.8
+  data: 0.56
+  data: 0.26
+  data: 0.8
+  data: 0.617414
+  data: 0.00999885798
+  data: 0.00999999
+  data: -0.199999988
+  data: 0.53
+  data: 0.2
+  data: 1.3
+  data: 0.566480339
+  data: -0.020001173
+  data: -0.049999997
+  data: 0.299999952
+  data: 0.61
+  data: 0.21
+  data: 0
+  data: 0.645135641
+  data: -0.0399996042
+  data: -0.0400000066
+  data: -1
+  data: 0.62
+  data: 0.23
+  data: 0.1
+  data: 0.661286652
+  data: -0.0299996138
+  data: -0.0199999958
+  data: -0.9
+  data: 0.68
+  data: 0.24
+  data: 1.8
+  data: 0.721110284
+  data: 0.0300003886
+  data: -0.0100000054
+  data: 0.799999952
+  data: 0.67
+  data: 0.27
+  data: 2.8
+  data: 0.722357273
+  data: 0.0200003982
+  data: 0.0200000107
+  data: 1.8
+  data: 0.66
+  data: 0.26
+  data: 0.8
+  data: 0.709365964
+  data: 0.0100004077
+  data: 0.00999999
+  data: -0.199999988
+  data: 0.63
+  data: 0.2
+  data: 1.3
+  data: 0.660984099
+  data: -0.0199996233
+  data: -0.049999997
+  data: 0.299999952
+  data: 0.41
+  data: 0.31
+  data: 0
+  data: 0.514003873
+  data: -0.0400007665
+  data: -0.0400003791
+  data: -1
+  data: 0.42
+  data: 0.33
+  data: 0.1
+  data: 0.534134805
+  data: -0.0300007761
+  data: -0.0200003684
+  data: -0.9
+  data: 0.48
+  data: 0.34
+  data: 1.8
+  data: 0.588217676
+  data: 0.0299992263
+  data: -0.0100003779
+  data: 0.799999952
+  data: 0.47
+  data: 0.37
+  data: 2.8
+  data: 0.598163843
+  data: 0.0199992359
+  data: 0.0199996233
+  data: 1.8
+  data: 0.46
+  data: 0.36
+  data: 0.8
+  data: 0.584123254
+  data: 0.00999924541
+  data: 0.00999963284
+  data: -0.199999988
+  data: 0.43
+  data: 0.3
+  data: 1.3
+  data: 0.524309099
+  data: -0.0200007558
+  data: -0.0500003695
+  data: 0.299999952
+  data: 0.51
+  data: 0.31
+  data: 0
+  data: 0.596824944
+  data: -0.0400011539
+  data: -0.0400003791
+  data: -1
+  data: 0.52
+  data: 0.33
+  data: 0.1
+  data: 0.615873337
+  data: -0.0300011635
+  data: -0.0200003684
+  data: -0.9
+  data: 0.58
+  data: 0.34
+  data: 1.8
+  data: 0.672309399
+  data: 0.0299988389
+  data: -0.0100003779
+  data: 0.799999952
+  data: 0.57
+  data: 0.37
+  data: 2.8
+  data: 0.679558694
+  data: 0.0199988484
+  data: 0.0199996233
+  data: 1.8
+  data: 0.56
+  data: 0.36
+  data: 0.8
+  data: 0.665732682
+  data: 0.00999885798
+  data: 0.00999963284
+  data: -0.199999988
+  data: 0.53
+  data: 0.3
+  data: 1.3
+  data: 0.609015584
+  data: -0.020001173
+  data: -0.0500003695
+  data: 0.299999952
+  num_voxel: 9
+  feature_dim: 7
+}
+voxel_coord {
+  data: 300
+  data: 302
+  data: 0
+  data: 301
+  data: 302
+  data: 0
+  data: 301
+  data: 303
+  data: 0
+  data: 302
+  data: 303
+  data: 0
+  data: 304
+  data: 302
+  data: 0
+  data: 305
+  data: 302
+  data: 0
+  data: 306
+  data: 302
+  data: 0
+  data: 304
+  data: 303
+  data: 0
+  data: 305
+  data: 303
+  data: 0
+  num_voxel: 9
+  coord_dim: 3
+}
+voxel_points {
+  data: 10
+  data: 6
+  data: 6
+  data: 6
+  data: 5
+  data: 6
+  data: 6
+  data: 6
+  data: 6
+  num_voxel: 9
+}
+anchor {
+  center_x: -0.0499992371
+  center_y: 0.0500011444
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 718803
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 0.850000381
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 740409
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 1.35000038
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 752412
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 1.35000038
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 752413
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 1.45000076
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 754812
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 1.64999962
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 759618
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 1.75
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 762007
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 1.75
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 762015
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 1.75
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 762017
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 1.75
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 762019
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 1.85000038
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 764413
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 1.85000038
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 764415
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.04999924
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 769209
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.15000153
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 771612
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.15000153
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 771614
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.15000153
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 771617
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.25
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 774012
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.35000229
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 776408
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.35000229
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 776414
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.45000076
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 778810
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.65000153
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 783613
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.75
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 786008
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.75
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 786010
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.75
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 786014
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.75
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 786018
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.85000229
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 788409
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.85000229
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 788412
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.85000229
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 788418
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.95000076
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 790817
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 2.95000076
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 790818
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 3.15000153
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 795617
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 3.35000229
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 800419
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 3.45000076
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 802815
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 3.65000153
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 807610
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 3.75
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 810012
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 3.95000076
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 814807
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 3.95000076
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 814812
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 3.95000076
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 814813
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 3.95000076
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 814814
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 4.04999924
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 817210
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 4.15000153
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 819608
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 4.25
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 822007
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 4.35000229
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 824407
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 4.35000229
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 824415
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 4.45000076
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 826809
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 4.45000076
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 826814
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 4.54999924
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 829207
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 4.54999924
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 829208
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 4.54999924
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 829209
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 4.65000153
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 831607
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 4.65000153
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 831609
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 4.65000153
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 831613
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 4.95000076
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 838819
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 5.15000153
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 843607
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 5.15000153
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 843615
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 5.25
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 846013
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 5.35000229
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 848412
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 5.65000153
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 855609
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 5.75
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 858014
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 5.75
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 858017
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 6.54999924
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 877215
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 6.65000153
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 879618
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.04999924
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 889210
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.04999924
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 889211
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.15000153
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 891614
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.15000153
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 891619
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.25
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 894009
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.25
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 894013
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.25
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 894015
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.25
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 894017
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.35000229
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 896411
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.35000229
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 896417
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.45000076
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 898813
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.54999924
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 901210
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.54999924
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 901217
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.65000153
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 903611
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.65000153
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 903618
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.65000153
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 903619
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.75
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 906009
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.75
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 906013
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.75
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 906018
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.85000229
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 908409
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.85000229
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 908413
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.85000229
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 908415
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 7.85000229
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 908419
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 8.04999924
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 913207
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 8.04999924
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 913214
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 8.15000153
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 915614
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 8.25
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 918011
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 8.25
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 918013
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 8.45000076
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 922814
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 8.75
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 930009
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 8.75
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 930013
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 8.75
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 930017
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 8.85000229
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 932407
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 8.85000229
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 932411
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 8.85000229
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 932412
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 8.85000229
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 932413
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 9.04999924
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 937207
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 9.04999924
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 937209
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 9.04999924
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 937210
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 9.04999924
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 937218
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 9.15000153
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 939608
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 9.25
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 942015
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 9.45000076
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 946819
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 9.65000153
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 951617
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 9.75
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 954009
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 9.75
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 954011
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 9.85000229
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 956407
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 9.95000076
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 958811
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 10.0499992
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 961219
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 10.25
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 966018
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 10.3500023
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 968407
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 10.4500008
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 970807
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 10.4500008
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 970809
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 10.4500008
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 970812
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 10.4500008
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 970818
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 10.6500015
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 975608
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 10.75
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 978011
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 10.8500023
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 980415
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 10.8500023
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 980417
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 10.8500023
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 980418
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 11.0499992
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 985211
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 11.0499992
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 985215
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 11.1500015
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 987615
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 11.25
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 990012
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 11.4500008
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 994807
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 11.4500008
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 994808
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 11.6500015
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 999612
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 11.6500015
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 999613
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 11.6500015
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 999618
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 11.8500023
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1004411
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 11.8500023
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1004414
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 11.8500023
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1004417
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 11.8500023
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1004418
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 11.9500008
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1006819
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 12.0499992
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1009207
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 12.0499992
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1009215
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 12.1500015
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1011608
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 12.1500015
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1011614
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 12.25
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1014008
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 12.25
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1014014
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 12.25
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1014015
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 12.4500008
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1018812
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 12.4500008
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1018819
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 12.5499992
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1021209
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 12.5499992
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1021212
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 12.6500015
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1023607
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 12.6500015
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1023613
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 12.9500008
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1030809
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 12.9500008
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1030810
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 12.9500008
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1030818
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.0499992
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1033211
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.0499992
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1033212
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.25
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1038007
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.25
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1038017
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.25
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1038018
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.3500023
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1040413
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.3500023
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1040415
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.4500008
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1042808
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.4500008
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1042818
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.5499992
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1045207
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.5499992
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1045215
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.75
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1050019
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.8500023
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1052408
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.8500023
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1052418
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.8500023
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1052419
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.9500008
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1054807
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 13.9500008
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1054819
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 14.25
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1062007
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 14.3500023
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1064407
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 14.3500023
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1064418
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 14.5499992
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1069212
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 14.5499992
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1069218
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 14.6500015
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1071608
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 14.6500015
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1071611
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 14.6500015
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1071617
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 14.75
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1074017
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 14.8500023
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1076407
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 14.8500023
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1076411
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 14.8500023
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1076413
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 14.8500023
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1076418
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 14.9500008
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1078819
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 15.0499992
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1081207
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 15.0499992
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1081211
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 15.0499992
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1081213
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 15.3500023
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1088418
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 15.4500008
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1090809
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 15.5499992
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1093208
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 15.6500015
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1095607
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 15.6500015
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1095610
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 15.75
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1098013
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 16.1500015
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1107610
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 16.1500015
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1107618
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 16.45
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1114815
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 16.8500023
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1124408
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 16.8500023
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1124409
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 16.8500023
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1124417
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 16.8500023
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1124419
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 16.95
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1126809
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 16.95
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1126813
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 17.25
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1134015
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 17.45
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1138809
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 17.45
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1138813
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 17.55
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1141208
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 17.6500015
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1143607
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 17.6500015
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1143612
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 17.6500015
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1143613
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 17.75
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1146017
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 17.75
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1146018
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 17.75
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1146019
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 17.8500023
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1148417
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 17.95
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1150809
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 17.95
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1150810
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 18.05
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1153214
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 18.25
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1158013
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 18.3500023
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1160408
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 18.3500023
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1160415
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 18.45
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1162808
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 18.6500015
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1167608
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 18.6500015
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1167617
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 18.75
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1170012
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 18.75
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1170013
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 18.8500023
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1172407
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 18.8500023
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1172408
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 18.8500023
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1172412
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 18.8500023
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1172414
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 19.05
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1177218
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 19.1500015
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1179608
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 19.1500015
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1179612
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 19.3500023
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1184415
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 19.55
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1189209
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 19.75
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1194010
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 19.95
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1198808
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 19.95
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1198814
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 20.1500015
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1203613
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 20.1500015
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1203615
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 20.1500015
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1203619
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 20.3500023
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1208409
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 20.45
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1210813
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 20.45
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1210818
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 20.45
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1210819
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 20.55
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1213208
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 20.6500015
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1215607
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 20.6500015
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1215609
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 20.8500023
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1220408
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 20.8500023
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1220419
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 20.95
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1222807
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 21.05
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1225209
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 21.05
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1225214
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 21.25
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1230008
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 21.45
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1234807
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 21.6500015
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1239607
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 21.95
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1246813
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.05
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1249212
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.05
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1249214
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.05
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1249218
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.1500015
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1251615
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.1500015
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1251618
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.25
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1254009
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.3500023
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1256419
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.45
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1258814
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.45
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1258818
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.45
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1258819
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.55
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1261208
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.55
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1261213
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.55
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1261214
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.6500015
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1263607
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.6500015
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1263612
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.75
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1266008
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.8500023
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1268411
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.8500023
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1268414
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.95
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1270813
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 22.95
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1270814
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 23.05
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1273208
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 23.1500015
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1275613
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 23.1500015
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1275617
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 23.1500015
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1275618
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 23.25
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1278010
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 23.3500023
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1280408
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 23.3500023
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1280419
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 23.6500015
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1287609
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 23.75
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1290008
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 23.75
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1290009
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 23.75
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1290013
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 23.8500023
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1292417
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 23.8500023
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1292419
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 24.05
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1297215
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 24.1500015
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1299611
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 24.1500015
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1299612
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 24.45
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1306808
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 24.45
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1306815
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 24.6500015
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1311612
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 24.6500015
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1311617
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 24.95
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1318819
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 25.05
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1321211
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 25.05
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1321218
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 25.05
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1321219
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 25.25
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1326007
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 25.3500023
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1328410
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 25.3500023
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1328418
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 25.45
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1330812
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 25.45
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1330817
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 25.6500015
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1335614
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 25.75
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1338008
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 25.8500023
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1340408
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 26.05
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1345210
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 26.1500015
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1347608
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 26.25
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1350015
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 26.25
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1350018
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 26.55
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1357207
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 26.55
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1357213
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 26.55
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1357217
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 26.55
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1357218
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 26.6500015
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1359617
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 26.75
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1362015
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 26.95
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1366807
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 26.95
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1366809
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 27.05
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1369218
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 27.1500015
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1371608
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 27.1500015
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1371613
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 27.1500015
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1371614
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 27.25
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1374013
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 27.3500023
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1376419
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 27.45
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1378810
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 27.45
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1378812
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 27.75
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1386011
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 27.75
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1386014
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 27.8500023
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1388407
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 27.8500023
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1388409
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 27.8500023
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1388413
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 28.1500015
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1395610
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 28.3500023
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1400414
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 28.45
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1402815
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 28.45
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1402818
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 28.6500015
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1407618
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 28.6500015
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1407619
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 28.75
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1410012
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 29.05
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1417211
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 29.05
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1417212
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 29.05
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1417217
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 29.1500015
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 1419612
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 29.3500023
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1424409
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 29.45
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1426819
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 29.55
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 1429211
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 29.55
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1429218
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 29.8500023
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1436414
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 29.8500023
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 1436418
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: 29.95
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 1438813
+  target_label: -1
+  is_positive: false
+}
+anchor {
+  center_x: -0.0499992371
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 718806
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: -0.0499992371
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 718810
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.0500011444
+  center_y: 0.0500011444
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 721203
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.0500011444
+  center_y: 0.149999619
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 721205
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.0500011444
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 721206
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.0500011444
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 721207
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.0500011444
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 721208
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.0500011444
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 721209
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.0500011444
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 721210
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.149999619
+  center_y: 0.0500011444
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 723603
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.149999619
+  center_y: 0.149999619
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 723605
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.149999619
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 723606
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.149999619
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 723607
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.25
+  center_y: 0.0500011444
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 726003
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.25
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 726006
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.25
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 726007
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.25
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 726008
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.25
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 726009
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.25
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 726010
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.25
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 726011
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.25
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 726013
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.25
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 726014
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.25
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 726015
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.25
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 726017
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.350000381
+  center_y: 0.0500011444
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 728403
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.350000381
+  center_y: 0.149999619
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 728405
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.350000381
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 728406
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.350000381
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 728409
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.350000381
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 728410
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.350000381
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 728411
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.350000381
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 728412
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.350000381
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 728413
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.350000381
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 728414
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.350000381
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 728415
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.350000381
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 728418
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.350000381
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 728419
+  target_label: 0
+  is_positive: false
+}
+anchor {
+  center_x: 0.450000763
+  center_y: 0.0500011444
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 730803
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.450000763
+  center_y: 0.149999619
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 730805
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.450000763
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 730806
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.450000763
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 730811
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.450000763
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 730812
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.450000763
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 730813
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.450000763
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 730814
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.450000763
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 730815
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.450000763
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 730817
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.450000763
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 730818
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.450000763
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 730819
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.550001144
+  center_y: 0.0500011444
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 733203
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.550001144
+  center_y: 0.149999619
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 733205
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.550001144
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 733206
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.550001144
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 733209
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.550001144
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 733211
+  target_label: 1
+  is_positive: true
+}
+anchor {
+  center_x: 0.550001144
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 733212
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.550001144
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 733213
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.550001144
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 733214
+  target_label: 1
+  is_positive: true
+}
+anchor {
+  center_x: 0.550001144
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 733215
+  target_label: 1
+  is_positive: true
+}
+anchor {
+  center_x: 0.550001144
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 733217
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.550001144
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 733218
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.550001144
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 733219
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.649999619
+  center_y: 0.0500011444
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 735603
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.649999619
+  center_y: 0.149999619
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 735605
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.649999619
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 735606
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.649999619
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 735607
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.649999619
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 735608
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.649999619
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 735609
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.649999619
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 735610
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.649999619
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 735611
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.649999619
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 735612
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.649999619
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 735613
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.649999619
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 735615
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.649999619
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 735617
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.649999619
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 735618
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.649999619
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 735619
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.75
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 738006
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.75
+  center_y: 0.149999619
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 738007
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.75
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 738008
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.75
+  center_y: 0.25
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 738009
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.75
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 738010
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.75
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 738011
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.75
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 0
+  offset: 738012
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.75
+  center_y: 0.350000381
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 738013
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.75
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 738014
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.75
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 738015
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.75
+  center_y: 0.450000763
+  length: 0.2
+  width: 0.1
+  height: 2
+  rotation: 1.57079637
+  offset: 738017
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.75
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 738018
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.75
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 1.57079637
+  offset: 738019
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.850000381
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 740410
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.850000381
+  center_y: 0.350000381
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 740414
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.850000381
+  center_y: 0.450000763
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 740418
+  target_label: 1
+  is_positive: false
+}
+anchor {
+  center_x: 0.149999619
+  center_y: 0.25
+  length: 0.3
+  width: 0.2
+  height: 2
+  rotation: 0
+  offset: 723610
+  target_label: 0
+  is_positive: true
+}
+label {
+  label_id: 0
+  type: 1
+  center_x: 0.15
+  center_y: 0.3
+  center_z: 1.2
+  length: 0.2
+  width: 0.2
+  height: 1.2
+  yaw: 1.2
+}
+label {
+  label_id: 1
+  type: 4
+  center_x: 0.55
+  center_y: 0.3
+  center_z: 1
+  length: 0.3
+  width: 0.2
+  height: 1
+  yaw: 1
+}

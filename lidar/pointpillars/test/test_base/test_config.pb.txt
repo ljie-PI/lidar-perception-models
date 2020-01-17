@@ -25,7 +25,7 @@ anchor_config {
     width: 0.2
     height: 2.0
   }
-  unmatch_anchor_sample_ratio: 0.0
+  unmatch_anchor_sample_ratio: 0.1
 }
 
 model_config: {
@@ -58,14 +58,17 @@ train_config {
   batch_size: 2
   train_epochs: 1
   steps_per_eval: 1000
-  steps_to_save_chpts: 1000
-  max_keep_chpts: 5
+  steps_to_save_ckpts: 1000
+  steps_to_step_lr: 10000
+  steps_to_update_metric: 50
+  max_keep_ckpts: 5
   data_load_threads: 8
   optimizer: "adam"
   learning_rate: 0.0002
   lr_decay: 0.8
   focal_alpha: 0.25
-  focal_gamma: 2
+  focal_gamma: 2.0
+  smooth_l1_sigma: 3.0
   sample_anchor_size: 512
   max_pos_anchor_size: 100
   max_neg_match_anchor_size: 200

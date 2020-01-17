@@ -57,25 +57,28 @@ model_config: {
   rpn_upsample_filters: 128
   num_anchor_per_loc: 6
   use_dir_class: true
-  nms_score_threshold: 0.1
+  nms_score_threshold: 0.5
   nms_iou_threshold: 0.5
 }
 
 train_config {
-  batch_size: 2
-  train_epochs: 1
-  steps_per_eval: 1000
-  steps_to_save_chpts: 1000
-  max_keep_chpts: 5
-  data_load_threads: 8
+  batch_size: 3
+  train_epochs: 3
+  steps_per_eval: 100000
+  steps_to_save_ckpts: 1000
+  steps_to_step_lr: 10000
+  steps_to_update_metric: 100
+  max_keep_ckpts: 5
+  data_load_threads: 4
   optimizer: "adam"
-  learning_rate: 0.0002
+  learning_rate: 0.002
   lr_decay: 0.8
   focal_alpha: 0.25
-  focal_gamma: 2
+  focal_gamma: 2.0
+  smooth_l1_sigma: 3.0
   sample_anchor_size: 512
   max_pos_anchor_size: 100
-  max_neg_match_anchor_size: 200
+  max_neg_match_anchor_size: 300
   pos_class_weight: 1.0
   neg_class_weight: 1.0
   cls_loss_weight: 1.0

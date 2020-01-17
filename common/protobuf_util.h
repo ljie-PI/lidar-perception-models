@@ -45,10 +45,6 @@ class ProtobufUtil {
     return true;
   }
 
-  static bool SetProtoToASCIIFile(const google::protobuf::Message &message,
-                                  int file_descriptor) {
-  }
-
   static bool SaveToASCIIFile(const google::protobuf::Message &message,
                               const std::string &file_name) {
     int fd = open(file_name.c_str(), O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);

@@ -40,3 +40,16 @@ foreach (TEST_FILE ${TEST_FILES})
              "--test_base=${CMAKE_CURRENT_SOURCE_DIR}/test_base")
     add_dependencies(${TEST_TARGET} pp_proto_defs)
 endforeach()
+
+set(TEST_EXAMPLE_GEN test_example_gen)
+add_executable(${TEST_EXAMPLE_GEN}
+               ${CMAKE_CURRENT_SOURCE_DIR}/test_example_gen.cpp
+               ${COMMON_SRC_FILES}
+               ${PREPROCESS_SRC_FILES})
+target_link_libraries(${TEST_EXAMPLE_GEN}
+                      pp_proto_defs
+                      gflags
+                      ${Protobuf_LIBRARIES}
+                      ${PCL_LIBRARIES}
+                      ${Boost_LIBRARIES})
+add_dependencies(${TEST_EXAMPLE_GEN} pp_proto_defs)

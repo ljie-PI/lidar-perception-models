@@ -90,11 +90,6 @@ bool PreProcessor::Process(const std::string& example_id, const std::string& pcd
   //           << " ms" << std::endl;
   std::vector<int> index_mapping;
   pcl::removeNaNFromPointCloud(point_cloud, point_cloud, index_mapping);
-  Label label;
-  if (!label.FromFile(label_file)) {
-    std::cerr << "Failed to load label file: " << label_file << std::endl;
-    return false;
-  }
 
   pointpillars::Example example;
   // auto voxel_gen_start = system_clock::now();
@@ -107,6 +102,11 @@ bool PreProcessor::Process(const std::string& example_id, const std::string& pcd
   //           << duration_cast<milliseconds>(voxel_gen_end - voxel_gen_start).count()
   //           << " ms" << std::endl;
 
+  Label label;
+  if (!label.FromFile(label_file)) {
+    std::cerr << "Label file " << label_file << " doesn't exist, example is only for prediction!!!" << std::endl;
+    return true;
+  }
   // auto target_assign_start = system_clock::now();
   if (!target_assigner_->Assign(point_cloud, label, &example)) {
     std::cerr << "Failed to generate labels for example: " << example_id << std::endl;

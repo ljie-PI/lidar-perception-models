@@ -48,11 +48,19 @@ TEST_F(VoxelGeneratorTest, generate_voxel_test) {
   int voffset = 154;
   EXPECT_NEAR(0.21, voxel.data(voffset++), 1e-5);   // x
   EXPECT_NEAR(0.31, voxel.data(voffset++), 1e-5);   // y
-  EXPECT_NEAR(0.0, voxel.data(voffset++), 1e-5);    // z
+  EXPECT_NEAR(0.1, voxel.data(voffset++), 1e-5);    // z
   EXPECT_NEAR(0.37443, voxel.data(voffset++), 1e-5);// distance
   EXPECT_NEAR(-0.04, voxel.data(voffset++), 1e-5);  // x to pillar center
   EXPECT_NEAR(-0.04, voxel.data(voffset++), 1e-5);  // y to pillar center
-  EXPECT_NEAR(-1.0, voxel.data(voffset++), 1e-5);   // z to pillar center
+  EXPECT_NEAR(-0.9, voxel.data(voffset++), 1e-5);   // z to pillar center
+  voffset = 189;
+  EXPECT_NEAR(0.23, voxel.data(voffset++), 1e-5);   // x
+  EXPECT_NEAR(0.30, voxel.data(voffset++), 1e-5);   // y
+  EXPECT_NEAR(1.3, voxel.data(voffset++), 1e-5);    // z
+  EXPECT_NEAR(0.37802, voxel.data(voffset++), 1e-5);// distance
+  EXPECT_NEAR(-0.02, voxel.data(voffset++), 1e-5);  // x to pillar center
+  EXPECT_NEAR(-0.05, voxel.data(voffset++), 1e-5);  // y to pillar center
+  EXPECT_NEAR(0.3, voxel.data(voffset++), 1e-5);    // z to pillar center
 
   const auto& voxel_coord = pp_example.voxel_coord();
   EXPECT_EQ(9, voxel_coord.num_voxel());

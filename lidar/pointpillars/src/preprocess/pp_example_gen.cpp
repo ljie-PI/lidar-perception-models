@@ -16,11 +16,6 @@ std::string LabelFileName(const std::string &example_id, const std::string &labe
   return label_dir + "/" + label_file;
 }
 
-bool process(const std::string& example,
-             const std::string& pcd_file,
-             const std::string& label_file) {
-}
-
 int main(int argc, char** argv) {
   gflags::ParseCommandLineFlags(&argc, &argv, true);
 
@@ -52,5 +47,5 @@ int main(int argc, char** argv) {
     }
   }
 
-  return -1;
+  return 0;
 }
