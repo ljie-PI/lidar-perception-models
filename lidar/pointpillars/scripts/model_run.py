@@ -11,7 +11,7 @@ import numpy as np
 
 from tensorboardX import SummaryWriter
 from google.protobuf import text_format
-from dataset import PointPillarsDataset, create_data_loader
+from dataset import PointPillarsDataset, create_data_loader, create_eval_data_loader
 from optimizer import create_optimizer
 from pointpillars import create_model
 from model_util import latest_checkpoint, save_model, restore_model
@@ -72,7 +72,7 @@ def example_convert_to_torch(example, dtype=torch.float32, device=None):
     return example_torch
 
 
-def train_one_step(train_config, model, optimizer, example, sum_writer, global_step):
+def train_one_step(train_config, model, optimizer, example, sum_writer, global_epoch, global_step):
     example_torch = example_convert_to_torch(example)
     batch_size = example["cls_targets"].shape[0]
 
@@ -81,18 +81,20 @@ def train_one_step(train_config, model, optimizer, example, sum_writer, global_s
     loss = ret_dict["loss"]
 
     # backward
-    loss.backward()
+    optimizer.zero_grad()
+    loss.sum().backward()
     torch.nn.utils.clip_grad_norm_(model.parameters(), 10.0)
     optimizer.step()
-    optimizer.zero_grad()
 
     # update metrics
     metrics = {
-        "loss": loss.item(),
-        "cls_loss": ret_dict["cls_loss_reduced"].item(),
-        "reg_loss": ret_dict["reg_loss_reduced"].item(),
-        "dir_loss": ret_dict["dir_loss_reduced"].item(),
-        "num_pos": ret_dict["num_pos"].item(),
+        "epoch": global_epoch,
+        "steps": global_step,
+        "loss": loss.sum(),
+        "cls_loss": ret_dict["cls_loss_reduced"].sum(),
+        "reg_loss": ret_dict["reg_loss_reduced"].sum(),
+        "dir_loss": ret_dict["dir_loss_reduced"].sum(),
+        "num_pos": ret_dict["num_pos"].sum(),
         "lr": float(optimizer.param_groups[0]['lr'])
     }
     if global_step > 0 and global_step % train_config.steps_to_update_metric == 0:
@@ -158,7 +160,7 @@ def predict(model, data_loader, pred_output, config):
             batch_dir_preds = preds_dict["dir_preds"]
             batch_dir_preds = batch_dir_preds.view(batch_size, -1, 2)
 
-        predictions_dicts = []
+        pred_idx = 0
         for box_preds, cls_preds, dir_preds in zip(
                 batch_box_preds, batch_cls_preds, batch_dir_preds):
             dir_labels = torch.max(dir_preds, dim=-1)[1]
@@ -230,24 +232,16 @@ def predict(model, data_loader, pred_output, config):
                         opp_labels,
                         torch.tensor(np.pi).type_as(box_preds),
                         torch.tensor(0.0).type_as(box_preds))
+                label_len = label_preds.shape[0]
+                assert label_len == scores.shape[0]
+                assert label_len == box_preds.shape[0]
+                with open(os.path.join(pred_output, pred_idx)) as fpred:
+                    for i in range(label_len):
+                        fpred.write("{} {} {} {} {} {} {} {} {}\n".format(
+                            box_preds[i, 0], box_preds[i, 1], box_preds[i, 2], box_preds[i, 3],
+                            box_preds[i, 4], box_preds[i, 5], box_preds[i, 6], label_preds[i], scores[i]))
 
-                final_box_preds = box_preds
-                final_scores = scores
-                final_labels = label_preds
-                # predictions
-                predictions_dict = {
-                    "box3d_lidar": final_box_preds,
-                    "scores": final_scores,
-                    "label_preds": label_preds
-                }
-            else:
-                predictions_dict = {
-                    "box3d_lidar": None,
-                    "scores": None,
-                    "label_preds": None
-                }
-            predictions_dicts.append(predictions_dict)
-        return predictions_dicts
+        pred_idx += 1
 
 
 def model_train(config_file, train_data_path, eval_data_path, model_path):
@@ -271,11 +265,11 @@ def model_train(config_file, train_data_path, eval_data_path, model_path):
 
     model = create_model(config)
     model.cuda()
+    if train_config.data_parallel and torch.cuda.device_count() > 1:
+        model = torch.nn.DataParallel(model)
     optimizer = create_optimizer(model, train_config)
-    lr_scheduler = torch.optim.lr_scheduler.ExponentialLR(
-        optimizer, train_config.lr_decay, last_epoch=-1)
 
-    ckpt_file, last_step = latest_checkpoint(model_path, model_config.model_name)
+    ckpt_file, last_step, last_epoch = latest_checkpoint(model_path, model_config.model_name)
     logging.info("Latest checkpoint file: {}".format(ckpt_file))
     if ckpt_file is not None:
         logging.info("Will restore model from checkpoint file: {}".format(ckpt_file))
@@ -286,7 +280,7 @@ def model_train(config_file, train_data_path, eval_data_path, model_path):
     data_loader = create_data_loader(config, data_set)
     data_iter = iter(data_loader)
     eval_data_set = PointPillarsDataset(config, eval_data_path, is_train=False)
-    eval_data_loader = create_data_loader(config, eval_data_set)
+    eval_data_loader = create_eval_data_loader(config, eval_data_set)
 
     sum_writer = None
     if train_config.enable_summary:
@@ -301,15 +295,19 @@ def model_train(config_file, train_data_path, eval_data_path, model_path):
         train_eval_loops = total_train_steps // train_config.steps_per_eval
         if total_train_steps % train_config.steps_per_eval != 0:
             train_eval_loops += 1
+
+    global_step = 0
+    global_step += last_step
+    global_epoch = last_epoch
     logging.info("***** batch_size = {:d}".format(train_config.batch_size))
     logging.info("***** epoch = {:d}".format(train_config.train_epochs))
     logging.info("***** total_train_steps = {:d}".format(total_train_steps))
     logging.info("***** train_eval_loops = {:d}".format(train_eval_loops))
+    logging.info("***** global_step = {:d}".format(global_step))
+    logging.info("***** last_epoch = {:d}".format(last_epoch))
 
-    global_step = 0
-    global_step += last_step
-    global_epoch = 0
-    optimizer.zero_grad()
+    lr_scheduler = torch.optim.lr_scheduler.ExponentialLR(
+        optimizer, train_config.lr_decay, last_epoch=-1)
     try:
         for _ in range(train_eval_loops):
             model.train()
@@ -318,35 +316,37 @@ def model_train(config_file, train_data_path, eval_data_path, model_path):
             else:
                 steps = train_config.steps_per_eval
             for step in range(steps):
+                global_step += 1
                 try:
                     example = next(data_iter)
                 except StopIteration:
-                    logging.info("epoch {} finished.".format(global_epoch))
                     global_epoch += 1
+                    lr_scheduler.step()
                     data_iter = iter(data_loader)
                     example = next(data_iter)
-                    global_step += 1
-                train_one_step(train_config, model, optimizer, example, sum_writer, global_step)
+                train_one_step(train_config, model, optimizer, example,
+                               sum_writer, global_epoch, global_step)
                 if global_step > 0 and global_step % train_config.steps_to_save_ckpts == 0:
                     save_model(
                         model_dir=model_path,
                         model=model,
                         model_name=model_config.model_name,
                         global_step=global_step,
+                        global_epoch=global_epoch,
                         max_to_keep=train_config.max_keep_ckpts)
-                if global_step > 0 and global_step % train_config.steps_to_step_lr == 0:
-                    lr_scheduler.step()
-                global_step += 1
 
             logging.info("\n############### predicting({:d} steps) ###############".format(global_step))
             pred_output = os.path.join(model_path, "eval-res-{:d}".format(global_step))
             predict(model, eval_data_loader, pred_output, config)
-            save_model(
-                model_dir=model_path,
-                model=model,
-                model_name=model_config.model_name + "_eval",
-                global_step=global_step,
-                max_to_keep=train_config.max_keep_ckpts)
+        
+        # save model after train
+        save_model(
+            model_dir=model_path,
+            model=model,
+            model_name=model_config.model_name,
+            global_step=global_step,
+            global_epoch=global_epoch,
+            max_to_keep=train_config.max_keep_ckpts)
 
     except Exception as e:
         save_model(
@@ -354,6 +354,7 @@ def model_train(config_file, train_data_path, eval_data_path, model_path):
             model=model,
             model_name=model_config.model_name,
             global_step=global_step,
+            global_epoch=global_epoch,
             max_to_keep=train_config.max_keep_ckpts)
         raise e
 

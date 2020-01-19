@@ -11,26 +11,33 @@ def latest_checkpoint(model_dir, model_name):
     logging.info("ckpt_info_path: {}".format(ckpt_info_path))
     if not os.path.exists(ckpt_info_path):
         logging.info("{} doesn't exist".format(ckpt_info_path))
-        return None, 0
+        return None, 0, 0
     with open(ckpt_info_path, "r") as f:
         ckpt_dict = json.loads(f.read())
     latest_ckpt = ckpt_dict["latest_ckpt"]
-    latest_step = ckpt_dict["latest_step"]
+    latest_step = ckpt_dict.get("latest_step", 0)
+    latest_epoch = ckpt_dict.get("latest_epoch", 0)
     ckpt_file_name = os.path.join(model_dir, latest_ckpt)
     if not os.path.exists(ckpt_file_name):
         logging.info("{} doesn't exist".format(ckpt_file_name))
-        return None, 0
-    return ckpt_file_name, latest_step
+        return None, 0, 0
+    return ckpt_file_name, latest_step, latest_epoch
 
 
 def save_model(model_dir,
                model,
                model_name,
                global_step,
+               global_epoch,
                max_to_keep=5):
     ckpt_info_path = os.path.join(model_dir, "{}-checkpoints.json".format(model_name))
     if not os.path.exists(ckpt_info_path):
-        ckpt_info_dict = {"latest_ckpt": {}, "latest_step": 0, "all_ckpts": []}
+        ckpt_info_dict = {
+            "latest_ckpt": {},
+            "latest_epoch": 0,
+            "latest_step": 0,
+            "all_ckpts": []
+        }
     else:
         with open(ckpt_info_path, "r") as f:
             ckpt_info_dict = json.loads(f.read())
@@ -40,6 +47,7 @@ def save_model(model_dir,
 
     ckpt_info_dict["latest_ckpt"] = ckpt_filename
     ckpt_info_dict["latest_step"] = global_step
+    ckpt_info_dict["latest_epoch"] = global_epoch
     ckpts_to_delete = []
     saved_model_num = len(ckpt_info_dict["all_ckpts"])
     if saved_model_num >= max_to_keep:

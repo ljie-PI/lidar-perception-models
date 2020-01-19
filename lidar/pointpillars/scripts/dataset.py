@@ -186,3 +186,13 @@ def create_data_loader(config, dataset):
         pin_memory=False,
         collate_fn=merge_data_batch)
     return data_loader
+
+def create_eval_data_loader(config, dataset):
+    data_loader = DataLoader(
+        dataset,
+        batch_size=config.eval_config.batch_size,
+        shuffle=False,
+        num_workers=config.eval_config.data_load_threads,
+        pin_memory=False,
+        collate_fn=merge_data_batch)
+    return data_loader

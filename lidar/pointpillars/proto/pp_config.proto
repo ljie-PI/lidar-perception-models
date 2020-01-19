@@ -64,28 +64,31 @@ message TrainConfig {
   required int32 train_epochs = 2;
   required int32 steps_per_eval = 3;
   required int32 steps_to_save_ckpts = 4;
-  required int32 steps_to_step_lr = 5;
-  required int32 steps_to_update_metric = 6;
-  required int32 max_keep_ckpts = 7;
-  required int32 data_load_threads = 8;
-  required string optimizer = 9;  // options: "adam", "adadeltea", "sgd"
-  required float learning_rate = 10;
-  required float lr_decay = 11;
-  required float focal_alpha = 12;
-  required float focal_gamma = 13;
-  required float smooth_l1_sigma = 14;
-  required int32 sample_anchor_size = 15;
-  required int32 max_pos_anchor_size = 16;
-  required int32 max_neg_match_anchor_size = 17;
-  required float pos_class_weight = 18;
-  required float neg_class_weight = 19;
-  required float cls_loss_weight = 20;
-  required float reg_loss_weight = 21;
-  required float dir_loss_weight = 22;
+  required int32 steps_to_update_metric = 5;
+  required int32 max_keep_ckpts = 6;
+  required int32 data_load_threads = 7;
+  required string optimizer = 8;  // options: "adam", "adadeltea", "sgd"
+  required float learning_rate = 9;
+  required float lr_decay = 10;
+  required float focal_alpha = 11;
+  required float focal_gamma = 12;
+  required float smooth_l1_sigma = 13;
+  required int32 sample_anchor_size = 14;
+  required int32 max_pos_anchor_size = 15;
+  required int32 max_neg_match_anchor_size = 16;
+  required float pos_class_weight = 17;
+  required float neg_class_weight = 18;
+  required float cls_loss_weight = 19;
+  required float reg_loss_weight = 20;
+  required float dir_loss_weight = 21;
+  optional bool data_parallel = 22 [default=false];
   optional bool enable_summary = 23 [default=false];
 }
 
-
+message EvalConfig {
+  required int32 batch_size = 1;
+  required int32 data_load_threads = 2;
+}
 
 message PointPillarsConfig {
   required VoxelConfig voxel_config = 1;
