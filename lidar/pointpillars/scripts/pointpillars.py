@@ -18,8 +18,8 @@ class PFNLayer(torch.nn.Module):
         if not self.last_vfe:
             out_channels = out_channels // 2
         self.units = out_channels
-        self.linear = torch.nn.Linear(in_channels, self.units)
-        self.norm = torch.nn.BatchNorm1d(self.units, eps=1e-3, momentum=0.01)
+        self.linear = torch.nn.Linear(in_channels, self.units, bias=False)
+        self.norm = torch.nn.BatchNorm1d(self.units)
 
     def forward(self, inputs):
         # logging.info("(FPNLayer): shape of inputs: {}".format(inputs.shape))
@@ -107,21 +107,24 @@ class PointPillarsScatter(torch.nn.Module):
 
 
 class RPN(torch.nn.Module):
-    def __init__(self, model_config, input_shape):
+    def __init__(self, model_config, num_input_filters):
         super(RPN, self).__init__()
-
-        num_input_filters = input_shape[2]
-
         layer_nums = list(model_config.rpn_layer_num)
         layer_strides = list(model_config.rpn_layer_strides)
         num_filters = list(model_config.rpn_num_filters)
         upsample_strides = list(model_config.rpn_upsample_strides)
         upsample_filters = list(model_config.rpn_upsample_filters)
 
+        # level 1 feature pyramid
         self.fp_level_1 = torch.nn.Sequential(
             torch.nn.ZeroPad2d(1),
             torch.nn.Conv2d(
-                num_input_filters, num_filters[0], 3, stride=layer_strides[0]),
+                num_input_filters,
+                num_filters[0],
+                kernel_size=3,
+                stride=layer_strides[0],
+                bias=False
+            ),
             torch.nn.BatchNorm2d(num_filters[0]),
             torch.nn.ReLU(),
         )
@@ -129,7 +132,13 @@ class RPN(torch.nn.Module):
             prefix = "l{:d}_".format(i + 1)
             self.fp_level_1.add_module(
                 prefix + "conv",
-                torch.nn.Conv2d(num_filters[0], num_filters[0], 3, padding=1))
+                torch.nn.Conv2d(
+                    num_filters[0],
+                    num_filters[0],
+                    kernel_size=3,
+                    padding=1,
+                    bias=False
+                ))
             self.fp_level_1.add_module(prefix + "bn", torch.nn.BatchNorm2d(num_filters[0]))
             self.fp_level_1.add_module(prefix + "relu", torch.nn.ReLU())
         self.deconv1 = torch.nn.Sequential(
@@ -137,15 +146,22 @@ class RPN(torch.nn.Module):
                 num_filters[0],
                 upsample_filters[0],
                 upsample_strides[0],
-                stride=upsample_strides[0]),
+                stride=upsample_strides[0],
+                bias=False
+            ),
             torch.nn.BatchNorm2d(upsample_filters[0]),
             torch.nn.ReLU(),
         )
-
+        # level 2 feature pyramid
         self.fp_level_2 = torch.nn.Sequential(
             torch.nn.ZeroPad2d(1),
             torch.nn.Conv2d(
-                num_filters[0], num_filters[1], 3, stride=layer_strides[1]),
+                num_filters[0],
+                num_filters[1],
+                kernel_size=3,
+                stride=layer_strides[1],
+                bias=False
+            ),
             torch.nn.BatchNorm2d(num_filters[1]),
             torch.nn.ReLU(),
         )
@@ -153,7 +169,13 @@ class RPN(torch.nn.Module):
             prefix = "l{:d}_".format(i + 1)
             self.fp_level_2.add_module(
                 prefix + "conv",
-                torch.nn.Conv2d(num_filters[1], num_filters[1], 3, padding=1))
+                torch.nn.Conv2d(
+                    num_filters[1],
+                    num_filters[1],
+                    kernel_size=3,
+                    padding=1,
+                    bias=False
+                ))
             self.fp_level_2.add_module(prefix + "bn", torch.nn.BatchNorm2d(num_filters[1]))
             self.fp_level_2.add_module(prefix + "relu", torch.nn.ReLU())
         self.deconv2 = torch.nn.Sequential(
@@ -161,15 +183,22 @@ class RPN(torch.nn.Module):
                 num_filters[1],
                 upsample_filters[1],
                 upsample_strides[1],
-                stride=upsample_strides[1]),
+                stride=upsample_strides[1],
+                bias=False
+            ),
             torch.nn.BatchNorm2d(upsample_filters[1]),
             torch.nn.ReLU(),
         )
-
+        # level 2 feature pyramid
         self.fp_level_3 = torch.nn.Sequential(
             torch.nn.ZeroPad2d(1),
             torch.nn.Conv2d(
-                num_filters[1], num_filters[2], 3, stride=layer_strides[2]),
+                num_filters[1],
+                num_filters[2],
+                kernel_size=3,
+                stride=layer_strides[2],
+                bias=False
+            ),
             torch.nn.BatchNorm2d(num_filters[2]),
             torch.nn.ReLU(),
         )
@@ -177,7 +206,13 @@ class RPN(torch.nn.Module):
             prefix = "l{:d}_".format(i + 1)
             self.fp_level_3.add_module(
                 prefix + "conv",
-                torch.nn.Conv2d(num_filters[2], num_filters[2], 3, padding=1))
+                torch.nn.Conv2d(
+                    num_filters[2],
+                    num_filters[2],
+                    kernel_size=3,
+                    padding=1,
+                    bias=False
+                ))
             self.fp_level_3.add_module(prefix + "bn", torch.nn.BatchNorm2d(num_filters[2]))
             self.fp_level_3.add_module(prefix + "relu", torch.nn.ReLU())
         self.deconv3 = torch.nn.Sequential(
@@ -185,7 +220,9 @@ class RPN(torch.nn.Module):
                 num_filters[2],
                 upsample_filters[2],
                 upsample_strides[2],
-                stride=upsample_strides[2]),
+                stride=upsample_strides[2],
+                bias=False
+            ),
             torch.nn.BatchNorm2d(upsample_filters[2]),
             torch.nn.ReLU(),
         )
@@ -195,11 +232,15 @@ class RPN(torch.nn.Module):
         self.conv_box = torch.nn.Conv2d(
             sum(upsample_filters),
             model_config.num_anchor_per_loc * BOX_ENCODE_SIZE,
-            1)
+            kernel_size=1
+        )
         self.use_direction_classifier = model_config.use_dir_class
         if self.use_direction_classifier:
             self.conv_dir_cls = torch.nn.Conv2d(
-                sum(upsample_filters), model_config.num_anchor_per_loc * 2, 1)
+                sum(upsample_filters),
+                model_config.num_anchor_per_loc * 2,
+                kernel_size=1
+            )
 
     def forward(self, x, bev=None):
         x = self.fp_level_1(x)
@@ -231,52 +272,52 @@ class PointPillars(torch.nn.Module):
         super(PointPillars, self).__init__()
         self._config = config
         self.use_direction_classifier = config.model_config.use_dir_class
+        self.dense_shape = dense_shape
 
         self.pp_feature_net = PointPillarsFeatureNet(self._config)
         self.pp_scatter = PointPillarsScatter(
                 dense_shape, num_input_features=self.pp_feature_net.out_filters)
 
-        rpn_input_shape = dense_shape + [self.pp_scatter.nchannels]
-        self.rpn = RPN(self._config.model_config, rpn_input_shape)
+        self.rpn = RPN(self._config.model_config, self.pp_scatter.nchannels)
 
-    def forward(self, example):
-        voxel_data = example["voxel_data"]
-        voxel_coord = example["voxel_coord"]
+    def forward(self,
+                voxel_data,
+                voxel_coord,
+                anchor_indices=None,
+                cls_targets=None,
+                reg_targets=None,
+                dir_targets=None,
+                return_preds=False):
         batch_size = voxel_data.shape[0]
         voxel_features = self.pp_feature_net(voxel_data)
         # logging.info("(PointPillars): type of voxel_features {}".format(voxel_features.shape))
         dense_features = self.pp_scatter(voxel_features, voxel_coord, batch_size)
         # logging.info("(PointPillars): type of dense_features {}".format(dense_features.shape))
         preds_dict = self.rpn(dense_features)
-        box_preds = preds_dict["box_preds"]
-        cls_preds = preds_dict["cls_preds"]
-        # logging.info("(PointPillars): shape of box_preds is: {}".format(box_preds.shape))
-        # logging.info("(PointPillars): shape of cls_preds is: {}".format(cls_preds.shape))
+        box_preds_map = preds_dict["box_preds"]
+        cls_preds_map = preds_dict["cls_preds"]
+        # logging.info("(PointPillars): shape of box_preds_map is: {}".format(box_preds_map.shape))
+        # logging.info("(PointPillars): shape of cls_preds_map is: {}".format(cls_preds_map.shape))
         dir_preds = None
         if self.use_direction_classifier:
-            dir_preds = preds_dict["dir_preds"]
-            # logging.info("(PointPillars): shape of dir_preds is: {}".format(dir_preds.shape))
+            dir_preds_map = preds_dict["dir_preds"]
+            # logging.info("(PointPillars): shape of dir_preds_map is: {}".format(dir_preds_map.shape))
 
         if self.training:
-            anchor_indices = example["anchor_indices"]
-            # logging.info("(PointPillars/training): shape of anchor_indices is: {}".format(anchor_indices.shape))
-            cls_targets = example["cls_targets"]
-            reg_targets = example["reg_targets"]
-            # logging.info("(PointPillars/training): shape of cls_targets is: {}".format(cls_targets.shape))
-            # logging.info("(PointPillars/training): shape of reg_targets is: {}".format(reg_targets.shape))
-            cls_preds = cls_preds.view(batch_size, -1, self._config.model_config.num_class)
+            cls_preds = cls_preds_map.view(batch_size, -1, self._config.model_config.num_class)
             cls_preds = torch.stack([cls_preds[i, anchor_indices[i]] for i in range(batch_size)])
-            box_preds = box_preds.view(batch_size, -1, BOX_ENCODE_SIZE)
+            box_preds = box_preds_map.view(batch_size, -1, BOX_ENCODE_SIZE)
             box_preds = torch.stack([box_preds[i, anchor_indices[i]] for i in range(batch_size)])
             # logging.info("(PointPillars/training): shape of box_preds is: {}".format(box_preds.shape))
+            # logging.info("(PointPillars/training): shape of box_targets is: {}".format(reg_targets.shape))
             # logging.info("(PointPillars/training): shape of cls_preds is: {}".format(cls_preds.shape))
+            # logging.info("(PointPillars/training): shape of cls_targets is: {}".format(cls_targets.shape))
 
-            dir_targets = None
             if self.use_direction_classifier:
-                dir_targets = example["dir_targets"]
-                dir_preds = dir_preds.view(batch_size, -1, 2)
+                dir_preds = dir_preds_map.view(batch_size, -1, 2)
                 dir_preds = torch.stack([dir_preds[i, anchor_indices[i]] for i in range(batch_size)])
                 # logging.info("(PointPillars/training): shape of dir_preds is: {}".format(dir_preds.shape))
+                # logging.info("(PointPillars/training): shape of dir_targets is: {}".format(dir_targets.shape))
 
             cls_weights, reg_weights, dir_weights = alloc_loss_weights(
                 cls_targets,
@@ -307,13 +348,21 @@ class PointPillars(torch.nn.Module):
                 dir_loss_reduced *= self._config.train_config.dir_loss_weight
                 loss += dir_loss_reduced
 
-            return {
+            res = {
                 "loss": loss,
                 "dir_loss_reduced": dir_loss_reduced,
                 "cls_loss_reduced": cls_loss_reduced,
                 "reg_loss_reduced": reg_loss_reduced,
                 "num_pos": (cls_targets > 0).float().sum() / cls_targets.shape[0]
             }
+            if return_preds:
+                res.update({
+                    "cls_preds_map": cls_preds_map,
+                    "cls_preds": cls_preds,
+                    "box_preds": box_preds,
+                    "dir_preds": dir_preds
+                })
+            return res
         else:
             return {
                 "cls_preds": cls_preds,

@@ -168,12 +168,18 @@ class PointPillarsDataset(Dataset):
 
 def merge_data_batch(batch_list, _unused=False):
     example_merged = defaultdict(list)
+    none_keys = set()
     for example in batch_list:
         for k, v in example.items():
+            if v is None:
+                none_keys.add(k)
+                continue
             example_merged[k].append(v)
     ret = {}
     for k, v in example_merged.items():
         ret[k] = np.stack(v, axis=0)
+    for k in none_keys:
+        ret[k] = None
     return ret
 
 

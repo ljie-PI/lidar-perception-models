@@ -35,15 +35,15 @@ def create_loss(box_preds, cls_preds, dir_preds,
         cls_targets, depth=num_class + 1, dtype=box_preds.dtype)
     one_hot_targets = one_hot_targets[..., 1:]
 
+    cls_losses = focal_binary_cross_entropy(
+        cls_preds, one_hot_targets, config.train_config)
+    cls_losses = cls_losses * cls_weights.unsqueeze(-1)
+
     box_preds, reg_targets = add_sin_difference(box_preds, reg_targets)
 
     reg_losses = smooth_l1_loss(
         box_preds, reg_targets, config.train_config)
     reg_losses = reg_losses * reg_weights.unsqueeze(-1)
-
-    cls_losses = focal_binary_cross_entropy(
-        cls_preds, one_hot_targets, config.train_config)
-    cls_losses = cls_losses * cls_weights.unsqueeze(-1)
 
     dir_losses = None
     if config.model_config.use_dir_class:
@@ -109,4 +109,3 @@ def multiclass_cross_entropy(predict_tensor, target_tensor, train_config):
         target_tensor.view(-1, num_classes).max(dim=-1)[1]
     )
     return loss
-

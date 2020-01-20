@@ -9,7 +9,7 @@ voxel_config: {
   z_range_min: -1.5
   z_range_max: 3.5
   num_voxels: 10000
-  num_points_per_voxel: 50
+  num_points_per_voxel: 48
   log_voxel_num: true
   log_point_num: true
 }
@@ -32,7 +32,7 @@ anchor_config {
     width: 2.0
     height: 2.0
   }
-  unmatch_anchor_sample_ratio: 0.1
+  unmatch_anchor_sample_ratio: 0.05
 }
 
 model_config: {
@@ -72,8 +72,8 @@ train_config {
   optimizer: "adam"
   learning_rate: 0.002
   lr_decay: 0.9
-  focal_alpha: 0.25
-  focal_gamma: 2.0
+  focal_alpha: 0.2
+  focal_gamma: 4.0
   smooth_l1_sigma: 3.0
   sample_anchor_size: 512
   max_pos_anchor_size: 100

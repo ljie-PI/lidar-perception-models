@@ -13,7 +13,7 @@ from tensorboardX import SummaryWriter
 from google.protobuf import text_format
 from dataset import PointPillarsDataset, create_data_loader, create_eval_data_loader
 from optimizer import create_optimizer
-from pointpillars import create_model
+from pointpillars import PointPillarsScatter, create_model
 from model_util import latest_checkpoint, save_model, restore_model
 from box_ops import decode_box_torch, center_to_minmax_2d_torch, BOX_ENCODE_SIZE
 from generated import pp_config_pb2
@@ -72,18 +72,31 @@ def example_convert_to_torch(example, dtype=torch.float32, device=None):
     return example_torch
 
 
-def train_one_step(train_config, model, optimizer, example, sum_writer, global_epoch, global_step):
-    example_torch = example_convert_to_torch(example)
+def train_one_step(train_config, model, optimizer, example,
+                   model_grid_size, sum_writer, global_epoch, global_step):
     batch_size = example["cls_targets"].shape[0]
+    example_torch = example_convert_to_torch(example)
+
+    voxel_data = example_torch["voxel_data"]
+    voxel_coord = example_torch["voxel_coord"]
+    anchor_indices = example_torch["anchor_indices"]
+    # logging.info("(PointPillars/training): shape of anchor_indices is: {}".format(anchor_indices.shape))
+    cls_targets = example_torch["cls_targets"]
+    reg_targets = example_torch["reg_targets"]
+    # logging.info("(PointPillars/training): shape of cls_targets is: {}".format(cls_targets.shape))
+    # logging.info("(PointPillars/training): shape of reg_targets is: {}".format(reg_targets.shape))
+    dir_targets = example_torch["dir_targets"]
+    # logging.info("(PointPillars/training): shape of dir_targets is: {}".format(dir_targets.shape))
 
     # forward
-    ret_dict = model(example_torch)
+    ret_dict = model(voxel_data, voxel_coord, anchor_indices,
+                     cls_targets, reg_targets, dir_targets,
+                     train_config.enable_summary)
     loss = ret_dict["loss"]
 
     # backward
     optimizer.zero_grad()
     loss.sum().backward()
-    torch.nn.utils.clip_grad_norm_(model.parameters(), 10.0)
     optimizer.step()
 
     # update metrics
@@ -100,6 +113,24 @@ def train_one_step(train_config, model, optimizer, example, sum_writer, global_e
     if global_step > 0 and global_step % train_config.steps_to_update_metric == 0:
         update_summary(sum_writer, metrics, global_step)
         log_metrics(metrics)
+        for name, param in model.named_parameters():
+            sum_writer.add_histogram(name, param, global_step=global_step)
+            sum_writer.add_histogram(name + "_grad", param.grad, global_step=global_step)
+        if train_config.enable_summary:
+            # add prediction and label distributions for debug
+            sum_writer.add_histogram("cls_pred_dist", torch.max(ret_dict["cls_preds"], dim=-1)[1])
+            sum_writer.add_histogram("cls_targets_dist", cls_targets)
+            sum_writer.add_histogram("dir_pred_dist", torch.max(ret_dict["dir_preds"], dim=-1)[1])
+            sum_writer.add_histogram("dir_targets_dist", dir_targets)
+            # add input and class prediction for debug
+            voxel_debug_scatter = PointPillarsScatter(
+                model_grid_size, num_input_features=1)
+            voxel_debug = torch.ones([batch_size, voxel_data.shape[1], 1])
+            voxel_img = voxel_debug_scatter(voxel_debug, voxel_coord, batch_size)
+            sum_writer.add_images("non_empty_voxels", voxel_img, global_step=global_step)
+            max_pred_scores = torch.max(ret_dict["cls_preds_map"], dim=-1)[0]
+            fg_pred_img = (max_pred_scores >= 0.5).type(torch.float32).unsqueeze(1)
+            sum_writer.add_images("fg_pred_image", fg_pred_img, global_step=global_step)
 
 
 def parse_anchors(anchor_indices, anchor_sizes, len_anchor_size, anchor_rots, len_anchor_rot,
@@ -150,13 +181,15 @@ def predict(model, data_loader, pred_output, config):
     for example in iter(data_loader):
         example = example_convert_to_torch(example)
         batch_size = example['voxel_data'].shape[0]
-        preds_dict = model(example)
+        voxel_data = example_torch["voxel_data"]
+        voxel_coord = example_torch["voxel_coord"]
+        preds_dict = model(voxel_data, voxel_coord)
         batch_cls_preds = preds_dict["cls_preds"]
         batch_cls_preds = batch_cls_preds.view(batch_size, -1, config.model_config.num_class)
         batch_box_preds = preds_dict["box_preds"]
         batch_box_preds = batch_box_preds.view(batch_size, -1, BOX_ENCODE_SIZE)
 
-        if model.use_direction_classifier:
+        if config.model_config.use_dir_class:
             batch_dir_preds = preds_dict["dir_preds"]
             batch_dir_preds = batch_dir_preds.view(batch_size, -1, 2)
 
@@ -196,7 +229,7 @@ def predict(model, data_loader, pred_output, config):
                         resolution
                     )
                     box_preds = decode_box_torch(box_preds, anchors)
-                    if model.use_direction_classifier:
+                    if config.model_config.use_dir_class:
                         dir_labels = dir_labels[top_scores_keep]
 
                 
@@ -217,7 +250,7 @@ def predict(model, data_loader, pred_output, config):
             # finally generate predictions.
             if selected is not None:
                 selected_boxes = box_preds[selected]
-                if model.use_direction_classifier:
+                if config.model_config.use_dir_class:
                     selected_dir_labels = dir_labels[selected]
                 selected_labels = top_labels[selected]
                 selected_scores = top_scores[selected]
@@ -226,7 +259,7 @@ def predict(model, data_loader, pred_output, config):
                 box_preds = selected_boxes
                 scores = selected_scores
                 label_preds = selected_labels
-                if model.use_direction_classifier:
+                if config.model_config.use_dir_class:
                     opp_labels = (box_preds[..., -1] > 0) ^ (selected_dir_labels > 0)
                     box_preds[..., -1] += torch.where(
                         opp_labels,
@@ -235,7 +268,7 @@ def predict(model, data_loader, pred_output, config):
                 label_len = label_preds.shape[0]
                 assert label_len == scores.shape[0]
                 assert label_len == box_preds.shape[0]
-                with open(os.path.join(pred_output, pred_idx)) as fpred:
+                with open(os.path.join(pred_output, str(pred_idx))) as fpred:
                     for i in range(label_len):
                         fpred.write("{} {} {} {} {} {} {} {} {}\n".format(
                             box_preds[i, 0], box_preds[i, 1], box_preds[i, 2], box_preds[i, 3],
@@ -263,8 +296,16 @@ def model_train(config_file, train_data_path, eval_data_path, model_path):
     train_config = config.train_config
     model_config = config.model_config
 
+    sum_writer = None
+    if train_config.enable_summary:
+        summary_dir = os.path.join(model_path, "summary")
+        if not os.path.exists(summary_dir):
+            os.makedirs(summary_dir)
+        sum_writer = SummaryWriter(str(summary_dir))
+
     model = create_model(config)
     model.cuda()
+    model_grid_size = model.dense_shape
     if train_config.data_parallel and torch.cuda.device_count() > 1:
         model = torch.nn.DataParallel(model)
     optimizer = create_optimizer(model, train_config)
@@ -281,13 +322,6 @@ def model_train(config_file, train_data_path, eval_data_path, model_path):
     data_iter = iter(data_loader)
     eval_data_set = PointPillarsDataset(config, eval_data_path, is_train=False)
     eval_data_loader = create_eval_data_loader(config, eval_data_set)
-
-    sum_writer = None
-    if train_config.enable_summary:
-        summary_dir = os.path.join(model_path, "summary")
-        if not os.path.exists(summary_dir):
-            os.makedirs(summary_dir)
-        sum_writer = SummaryWriter(str(summary_dir))
 
     total_train_steps = train_config.train_epochs * len(data_set) // train_config.batch_size + 1
     train_eval_loops = 1
@@ -308,6 +342,7 @@ def model_train(config_file, train_data_path, eval_data_path, model_path):
 
     lr_scheduler = torch.optim.lr_scheduler.ExponentialLR(
         optimizer, train_config.lr_decay, last_epoch=-1)
+
     try:
         for _ in range(train_eval_loops):
             model.train()
@@ -325,7 +360,7 @@ def model_train(config_file, train_data_path, eval_data_path, model_path):
                     data_iter = iter(data_loader)
                     example = next(data_iter)
                 train_one_step(train_config, model, optimizer, example,
-                               sum_writer, global_epoch, global_step)
+                               model_grid_size, sum_writer, global_epoch, global_step)
                 if global_step > 0 and global_step % train_config.steps_to_save_ckpts == 0:
                     save_model(
                         model_dir=model_path,
