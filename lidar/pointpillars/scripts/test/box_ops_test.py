@@ -44,29 +44,6 @@ class BoxOpsTest(unittest.TestCase):
         ])
         nptest.assert_array_equal(np.array([1, 0]), box_ops.encode_direction_class(label))
     
-    def test_center_to_corner_box2d(self):
-        centers = torch.tensor([[0.0, 0.0], [0.5, 0.5]])
-        sizes = torch.tensor([[1.0, 1.0], [1.0, 1.0]])
-        corners = torch.tensor([[[ -0.5000, -0.5000],
-                                 [ -0.5000,  0.5000],
-                                 [ 0.5000,  0.5000],
-                                 [ 0.5000, -0.5000]],
-                                 [[ 0.0000,  0.0000],
-                                 [ 0.0000,  1.0000],
-                                 [ 1.0000,  1.0000],
-                                 [ 1.0000,  0.0000]]])
-        tchtest.assert_allclose(corners, box_ops.center_to_corner_box2d(centers, sizes))
-        rot = torch.tensor([math.pi / 4, -math.pi / 4])
-        rot_corners = torch.tensor([[[ 0.0000, -0.7071],
-                                     [-0.7071,  0.0000],
-                                     [ 0.0000,  0.7071],
-                                     [ 0.7071,  0.0000]],
-                                     [[-0.2071,  0.5000],
-                                     [ 0.5000,  1.2071],
-                                     [ 1.2071,  0.5000],
-                                     [ 0.5000, -0.2071]]])
-        tchtest.assert_allclose(rot_corners, box_ops.center_to_corner_box2d(centers, sizes, rot))
-    
     def test_center_to_minmax_2d(self):
         centers = torch.tensor([[0.0, 0.0], [0.5, 0.5]])
         sizes = torch.tensor([[1.0, 1.0], [1.0, 1.0]])

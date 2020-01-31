@@ -36,9 +36,9 @@ class PointPillarsDataset(Dataset):
         example.ParseFromString(fexample.read())
         fexample.close()
 
-        return self.preprocess(example)
+        return self.preprocess(example, int(self._example_ids[idx]))
 
-    def preprocess(self, example):
+    def preprocess(self, example, example_id):
         # parse voxel encoding
         voxel_coord_data = np.array(list(example.voxel_coord.data))
         voxel_coord_data = voxel_coord_data.reshape(
@@ -69,9 +69,13 @@ class PointPillarsDataset(Dataset):
         
         ret = {
             "voxel_data": voxel_data,
-            "voxel_coord": voxel_coord_data
+            "voxel_coord": voxel_coord_data,
+            "voxel_points": voxel_points_data
         }
         if not self._is_train:
+            ret.update({
+                "example_id": np.array([example_id], dtype=np.int32)
+            })
             return ret
 
         # following process are only for training
@@ -163,6 +167,7 @@ class PointPillarsDataset(Dataset):
             "reg_targets": reg_targets,
             "dir_targets": dir_targets
         })
+
         return ret
 
 

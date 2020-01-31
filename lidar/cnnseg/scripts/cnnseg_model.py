@@ -148,9 +148,9 @@ class CNNSegModel(object):
         flatten_labels = self._mask_and_flatten(labels, ext_mask)
         flatten_labels = tf.to_float(tf.greater_equal(flatten_labels, 0.5))
         gamma = self._config.fl_gamma
-        pos_weight = self._config.pos_weight
+        alpha = self._config.fl_alpha
         epsilon = 1e-8
-        losses = -1 * flatten_labels * tf.pow(1-flatten_preds, gamma) * tf.log(flatten_preds+epsilon) * pos_weight \
+        losses = -1 * flatten_labels * tf.pow(1-flatten_preds, gamma) * tf.log(flatten_preds+epsilon) * alpha \
                  - (1-flatten_labels) * tf.pow(flatten_preds, gamma) * tf.log(1-flatten_preds+epsilon)
         return tf.reduce_sum(losses * 100) / tf.reduce_sum(ext_mask) / self._config.batch_size
 

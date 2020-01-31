@@ -5,10 +5,13 @@ import logging
 import torch
 
 from loss import alloc_loss_weights, create_loss
-from box_ops import encode_box, BOX_ENCODE_SIZE
+from box_ops import BOX_ENCODE_SIZE
 
 
 class PFNLayer(torch.nn.Module):
+    """
+    Layer to extract features on pillars
+    """
     def __init__(self,
                  in_channels,
                  out_channels,
@@ -31,13 +34,16 @@ class PFNLayer(torch.nn.Module):
 
         if self.last_vfe:
             return x_max
-        else:
-            x_repeat = x_max.repeat(1, inputs.shape[1], 1)
-            x_concatenated = torch.cat([x, x_repeat], dim=2)
-            return x_concatenated
+
+        x_repeat = x_max.repeat(1, inputs.shape[1], 1)
+        x_concatenated = torch.cat([x, x_repeat], dim=2)
+        return x_concatenated
 
 
 class PointPillarsFeatureNet(torch.nn.Module):
+    """
+    Network to extract features on pillars
+    """
     def __init__(self, config):
         super(PointPillarsFeatureNet, self).__init__()
         self.name = 'PointPillarsFeatureNet'
@@ -95,10 +101,8 @@ class PointPillarsScatter(torch.nn.Module):
         for batch_idx in range(batch_size):
             canvas = torch.zeros(self.x_size * self.y_size, self.nchannels,
                                  dtype=input_feat.dtype, device=input_feat.device)
-            this_coords = coords[batch_idx]
-            indices = (this_coords[:, 0] * self.y_size + this_coords[:, 1]).type(torch.long)
-            voxels = input_feat[batch_idx]
-            canvas[indices, :] = voxels
+            indices = (coords[batch_idx, :, 0] * self.y_size + coords[batch_idx, :, 1]).type(torch.long)
+            canvas[indices, :] = input_feat[batch_idx]
             batch_canvas.append(canvas)
         batch_canvas = torch.stack(batch_canvas, 0).permute(0, 2, 1).contiguous()
         batch_canvas = batch_canvas.view(batch_size, self.nchannels, self.x_size, self.y_size)
@@ -107,6 +111,9 @@ class PointPillarsScatter(torch.nn.Module):
 
 
 class RPN(torch.nn.Module):
+    """
+    RPN network based on pseudo image feature map
+    """
     def __init__(self, model_config, num_input_filters):
         super(RPN, self).__init__()
         layer_nums = list(model_config.rpn_layer_num)
@@ -266,7 +273,7 @@ class RPN(torch.nn.Module):
             ret_dict["dir_preds"] = dir_preds
         return ret_dict
 
-    
+
 class PointPillars(torch.nn.Module):
     def __init__(self, dense_shape, config):
         super(PointPillars, self).__init__()
@@ -290,34 +297,46 @@ class PointPillars(torch.nn.Module):
                 return_preds=False):
         batch_size = voxel_data.shape[0]
         voxel_features = self.pp_feature_net(voxel_data)
-        # logging.info("(PointPillars): type of voxel_features {}".format(voxel_features.shape))
+        # logging.info("(PointPillars): type of voxel_features {}" \
+        #     .format(voxel_features.shape))
         dense_features = self.pp_scatter(voxel_features, voxel_coord, batch_size)
-        # logging.info("(PointPillars): type of dense_features {}".format(dense_features.shape))
+        # logging.info("(PointPillars): type of dense_features {}" \
+        #     .format(dense_features.shape))
         preds_dict = self.rpn(dense_features)
         box_preds_map = preds_dict["box_preds"]
         cls_preds_map = preds_dict["cls_preds"]
-        # logging.info("(PointPillars): shape of box_preds_map is: {}".format(box_preds_map.shape))
-        # logging.info("(PointPillars): shape of cls_preds_map is: {}".format(cls_preds_map.shape))
+        # logging.info("(PointPillars): shape of box_preds_map is: {}" \
+        #     .format(box_preds_map.shape))
+        # logging.info("(PointPillars): shape of cls_preds_map is: {}" \
+        #     .format(cls_preds_map.shape))
         dir_preds = None
         if self.use_direction_classifier:
             dir_preds_map = preds_dict["dir_preds"]
-            # logging.info("(PointPillars): shape of dir_preds_map is: {}".format(dir_preds_map.shape))
+            # logging.info("(PointPillars): shape of dir_preds_map is: {}" \
+            #     .format(dir_preds_map.shape))
 
         if self.training:
             cls_preds = cls_preds_map.view(batch_size, -1, self._config.model_config.num_class)
             cls_preds = torch.stack([cls_preds[i, anchor_indices[i]] for i in range(batch_size)])
             box_preds = box_preds_map.view(batch_size, -1, BOX_ENCODE_SIZE)
             box_preds = torch.stack([box_preds[i, anchor_indices[i]] for i in range(batch_size)])
-            # logging.info("(PointPillars/training): shape of box_preds is: {}".format(box_preds.shape))
-            # logging.info("(PointPillars/training): shape of box_targets is: {}".format(reg_targets.shape))
-            # logging.info("(PointPillars/training): shape of cls_preds is: {}".format(cls_preds.shape))
-            # logging.info("(PointPillars/training): shape of cls_targets is: {}".format(cls_targets.shape))
+            # logging.info("(PointPillars/training): shape of box_preds is: {}" \
+            #     .format(box_preds.shape))
+            # logging.info("(PointPillars/training): shape of box_targets is: {}" \
+            #     .format(reg_targets.shape))
+            # logging.info("(PointPillars/training): shape of cls_preds is: {}" \
+            #     .format(cls_preds.shape))
+            # logging.info("(PointPillars/training): shape of cls_targets is: {}" \
+            #     .format(cls_targets.shape))
 
             if self.use_direction_classifier:
                 dir_preds = dir_preds_map.view(batch_size, -1, 2)
-                dir_preds = torch.stack([dir_preds[i, anchor_indices[i]] for i in range(batch_size)])
-                # logging.info("(PointPillars/training): shape of dir_preds is: {}".format(dir_preds.shape))
-                # logging.info("(PointPillars/training): shape of dir_targets is: {}".format(dir_targets.shape))
+                dir_preds = torch.stack(
+                    [dir_preds[i, anchor_indices[i]] for i in range(batch_size)])
+                # logging.info("(PointPillars/training): shape of dir_preds is: {}" \
+                #     .format(dir_preds.shape))
+                # logging.info("(PointPillars/training): shape of dir_targets is: {}" \
+                #     .format(dir_targets.shape))
 
             cls_weights, reg_weights, dir_weights = alloc_loss_weights(
                 cls_targets,
@@ -342,34 +361,22 @@ class PointPillars(torch.nn.Module):
             reg_loss_reduced *= self._config.train_config.reg_loss_weight
             cls_loss_reduced = cls_loss.sum() / batch_size
             cls_loss_reduced *= self._config.train_config.cls_loss_weight
-            loss = reg_loss_reduced + cls_loss_reduced
+            # loss = reg_loss_reduced + cls_loss_reduced
+            loss = cls_loss_reduced
             if self.use_direction_classifier:
                 dir_loss_reduced = dir_loss.sum() / batch_size
                 dir_loss_reduced *= self._config.train_config.dir_loss_weight
-                loss += dir_loss_reduced
+                # loss += dir_loss_reduced
 
-            res = {
-                "loss": loss,
-                "dir_loss_reduced": dir_loss_reduced,
-                "cls_loss_reduced": cls_loss_reduced,
-                "reg_loss_reduced": reg_loss_reduced,
-                "num_pos": (cls_targets > 0).float().sum() / cls_targets.shape[0]
-            }
+            num_pos = (cls_targets > 0).float().sum() / batch_size
+            res = [loss, cls_loss_reduced, reg_loss_reduced, dir_loss_reduced, num_pos]
             if return_preds:
-                res.update({
-                    "cls_preds_map": cls_preds_map,
-                    "cls_preds": cls_preds,
-                    "box_preds": box_preds,
-                    "dir_preds": dir_preds
-                })
-            return res
-        else:
-            return {
-                "cls_preds": cls_preds,
-                "box_preds": box_preds,
-                "dir_preds": dir_preds
-            }
-    
+                res.extend([cls_preds_map, cls_preds, box_preds, dir_preds])
+            return tuple(res)
+
+        return (cls_preds_map, box_preds_map, dir_preds_map)
+
+
 def create_model(config):
     voxel_config = config.voxel_config
     x_size = math.ceil((voxel_config.x_range_max - voxel_config.x_range_min) \
@@ -381,3 +388,27 @@ def create_model(config):
     model = PointPillars(grid_size, config)
 
     return model
+
+
+def draw_model_graph(model, sum_writer, example):
+    if sum_writer is None:
+        return
+    if model.training:
+        voxel_data = example["voxel_data"]
+        voxel_coord = example["voxel_coord"]
+        anchor_indices = example["anchor_indices"]
+        cls_targets = example["cls_targets"]
+        reg_targets = example["reg_targets"]
+        dir_targets = example["dir_targets"]
+        # logging.info("(draw_model_graph): shape of voxel_data is: {}".format(voxel_data.shape))
+        # logging.info("(draw_model_graph): shape of voxel_coord is: {}".format(voxel_coord.shape))
+        # logging.info("(draw_model_graph): shape of anchor_indices is: {}".format(anchor_indices.shape))
+        # logging.info("(draw_model_graph): shape of cls_targets is: {}".format(cls_targets.shape))
+        # logging.info("(draw_model_graph): shape of reg_targets is: {}".format(reg_targets.shape))
+        # logging.info("(draw_model_graph): shape of dir_targets is: {}".format(dir_targets.shape))
+        sum_writer.add_graph(
+            model,
+            (voxel_data, voxel_coord, anchor_indices,
+             cls_targets, reg_targets, dir_targets)
+        )
+        sum_writer.flush()

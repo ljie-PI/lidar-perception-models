@@ -22,7 +22,8 @@ class ModelConfig(object):
 
         # config for losses
         self.pos_weight = js_config.get("pos_weight", 10)
-        self.fl_gamma = js_config.get("fl_gamma", 4)
+        self.fl_gamma = js_config.get("fl_gamma", 2)
+        self.fl_alpha = js_config.get("fl_alpha", 0.25)
         self.unmask_ratio = js_config.get("unmask_ratio", 0.02)
         self.category_label_thr = js_config.get("category_label_thr", 0.4)
         self.confidence_label_thr = js_config.get("confidence_label_thr", 0.1)

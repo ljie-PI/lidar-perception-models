@@ -99,13 +99,3 @@ def sigmoid_cross_entropy_with_logits(logits, labels):
     loss = torch.clamp(logits, min=0) - logits * labels.type_as(logits)
     loss += torch.log1p(torch.exp(-torch.abs(logits)))
     return loss
-
-
-def multiclass_cross_entropy(predict_tensor, target_tensor, train_config):
-    num_classes = predict_tensor.shape[-1]
-    loss_func = torch.nn.CrossEntropyLoss(reduction='none')
-    loss = loss_func(
-        predict_tensor.view([-1, num_classes]),
-        target_tensor.view(-1, num_classes).max(dim=-1)[1]
-    )
-    return loss

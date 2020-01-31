@@ -17,10 +17,10 @@ class DatasetTest(unittest.TestCase):
 
     def setUp(self):
         config = pp_config_pb2.PointPillarsConfig()
-        fconfig = open("./test_data/test_config.pb.txt")
+        fconfig = open("./test/test_data/test_config.pb.txt")
         text_format.Parse(fconfig.read(), config)
         fconfig.close()
-        self.dataset = PointPillarsDataset(config, "./test_data", True)
+        self.dataset = PointPillarsDataset(config, "./test/test_data", True)
         self.assertEqual(1, len(self.dataset))
 
     def test_voxel_data(self):
