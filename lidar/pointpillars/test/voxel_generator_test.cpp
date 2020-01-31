@@ -80,18 +80,30 @@ TEST_F(VoxelGeneratorTest, generate_voxel_test) {
   EXPECT_EQ(5, voxel_points.data(4));
 }
 
-TEST_F(VoxelGeneratorTest, sample_voxel_test) {
-  LidarPointCloud point_cloud;
-  std::string full_pc_path = FLAGS_test_base + "/test_point_cloud2.txt";
-  EXPECT_EQ(true, LoadPointCloud(full_pc_path, &point_cloud));
+TEST_F(VoxelGeneratorTest, select_voxel_test) {
+  LidarPointCloud point_cloud1;
+  std::string full_pc_path1 = FLAGS_test_base + "/test_point_cloud2.txt";
+  EXPECT_EQ(true, LoadPointCloud(full_pc_path1, &point_cloud1));
 
-  pointpillars::Example pp_example;
-  voxel_generator_->Generate(point_cloud, &pp_example);
-
-  const auto& voxel = pp_example.voxel();
+  pointpillars::Example pp_example1;
+  voxel_generator_->Generate(point_cloud1, &pp_example1);
+  const auto& voxel = pp_example1.voxel();
   EXPECT_EQ(10, voxel.num_voxel());
   EXPECT_EQ(7, voxel.feature_dim());
   EXPECT_EQ(70, voxel.data_size());
+
+  LidarPointCloud point_cloud2;
+  std::string full_pc_path2 = FLAGS_test_base + "/test_point_cloud3.txt";
+  EXPECT_EQ(true, LoadPointCloud(full_pc_path2, &point_cloud2));
+
+  pointpillars::Example pp_example2;
+  voxel_generator_->voxel_select_method_ = pointpillars::BY_COUNT;
+  voxel_generator_->Generate(point_cloud2, &pp_example2);
+  voxel_generator_->voxel_select_method_ = pointpillars::RANDOM;
+  const auto& voxel_points = pp_example2.voxel_points();
+  for (int i = 0; i < 9; ++i) {
+    EXPECT_TRUE(voxel_points.data(i) > 1);
+  }
 }
 
 int main(int argc, char **argv) {

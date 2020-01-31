@@ -22,9 +22,14 @@ class VoxelGenerator {
   bool Generate(const LidarPointCloud& point_cloud, pointpillars::Example *example);
 
  private:
+  void SelectVoxelRandomly(std::vector<int>& voxel_idxs);
+  void SelectVoxelByCount(const std::vector<std::vector<size_t>>& voxel_points,
+                          std::vector<int>& voxel_idxs);
+
   std::shared_ptr<VoxelMapping> voxel_mapping_;
   int num_voxels_;
   int num_points_per_voxel_;
+  pointpillars::VOXEL_SELECT_METHOD voxel_select_method_;
   bool save_points_;
 
   bool log_voxel_num_;
@@ -41,4 +46,5 @@ class VoxelGenerator {
   int point_dim_;
 
   friend class VoxelGeneratorTest_read_config_test_Test;
+  friend class VoxelGeneratorTest_select_voxel_test_Test;
 };

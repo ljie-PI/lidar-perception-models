@@ -26,6 +26,7 @@ VoxelGenerator::VoxelGenerator(const pointpillars::PointPillarsConfig& config)
 
   num_voxels_ = config.voxel_config().num_voxels();
   num_points_per_voxel_ = config.voxel_config().num_points_per_voxel();
+  voxel_select_method_ = config.voxel_config().voxel_select_method();
   save_points_ = config.voxel_config().save_points();
   log_voxel_num_ = config.voxel_config().log_voxel_num();
   if (log_voxel_num_) {
@@ -66,6 +67,40 @@ VoxelGenerator::~VoxelGenerator() {
 }
 
 /**
+ * Randomly select a fixed number of voxels according to the paper
+ */
+void VoxelGenerator::SelectVoxelRandomly(std::vector<int>& voxel_idxs) {
+  rand_shuffle_->Shuffle(voxel_idxs.begin(), voxel_idxs.end());
+}
+
+/**
+ * Lots of voxels contains few points. Drop this kind of voxels should't affact the model performance
+ */
+void VoxelGenerator::SelectVoxelByCount(const std::vector<std::vector<size_t>>& voxel_points,
+                                        std::vector<int>& voxel_idxs) {
+  // In theory we should sort voxels by count of points in them.
+  // But in fact, lots of voxel contains only 1 point.
+  // So we keep all voxels contains more than 1 point.
+  int left = 0, right = voxel_idxs.size() - 1;
+  while (left < right) {
+    if (voxel_points[left].size() > 1) {
+      ++left;
+    } else {
+      int tmp = voxel_idxs[right];
+      voxel_idxs[right] = voxel_idxs[left];
+      voxel_idxs[left] = tmp;
+      --right;
+    }
+  }
+  if (left >= num_voxels_) {
+    // more than <num_voxels_> voxels contains more than 1 point
+    rand_shuffle_->Shuffle(voxel_idxs.begin(), voxel_idxs.begin() + left);
+  } else if (right < num_voxels_) {
+    rand_shuffle_->Shuffle(voxel_idxs.begin() + right, voxel_idxs.end());
+  }
+}
+
+/**
  * According to the paper:
 The set of pillars will be mostly empty due to sparsity
 of the point cloud, and the non-empty pillars will in general
@@ -80,7 +115,9 @@ too much data to fit in this tensor, the data is randomly samapled.
 Conversely, if a sample or pillar has too little data to
 populate the tensor, zero padding is applied.
  *
- * This function will fill voxel and voxel_coord of pointpillars::Examples
+ * In our implemnetation, we also support selecting P pillars order by count of points in each pillar
+ * 
+ * This function will fill values into voxel and voxel_coord of pointpillars::Examples
  * voxel: only contains non-empty voxels which contains LiDAR points
  * voxel_coord: (x_offset, y_offset, z_offset) of each non-empty voxel in voxel feature map
  */
@@ -126,7 +163,11 @@ bool VoxelGenerator::Generate(const LidarPointCloud& point_cloud, pointpillars::
   if (voxel_num > num_voxels_) {
     // number of non-empty voxels less then num_voxels_,
     // will sample voxels
-    rand_shuffle_->Shuffle(voxel_idxs.begin(), voxel_idxs.end());
+    if (voxel_select_method_ == pointpillars::RANDOM) {
+      SelectVoxelRandomly(voxel_idxs);
+    } else {
+      SelectVoxelByCount(voxel_points, voxel_idxs);
+    }
     voxel_idxs.resize(num_voxels_);
     voxel_num = num_voxels_;
   }

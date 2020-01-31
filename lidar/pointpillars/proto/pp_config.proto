@@ -7,6 +7,11 @@ enum ProcessPhase {
   TRAINING = 1;
 }
 
+enum VOXEL_SELECT_METHOD {
+  RANDOM = 0;
+  BY_COUNT = 1;
+}
+
 message VoxelConfig {
   required float x_resolution = 1;
   required float y_resolution = 2;
@@ -19,9 +24,10 @@ message VoxelConfig {
   required float z_range_max = 9;
   required int32 num_voxels = 10;
   required int32 num_points_per_voxel = 11;
-  optional bool save_points = 12 [default=false];
-  optional bool log_voxel_num = 13 [default=false]; // enable to output voxel_num distribution
-  optional bool log_point_num = 14 [default=false]; // enable to output piont_num distribution
+  required VOXEL_SELECT_METHOD voxel_select_method = 12;
+  optional bool save_points = 13 [default=false];
+  optional bool log_voxel_num = 14 [default=false]; // enable to output voxel_num distribution
+  optional bool log_point_num = 15 [default=false]; // enable to output piont_num distribution
 }
 
 message AnchorSize {
