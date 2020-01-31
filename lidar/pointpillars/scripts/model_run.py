@@ -118,11 +118,41 @@ def train_one_step(train_config, model, optimizer, example_torch,
             if param.grad is not None:
                 sum_writer.add_histogram(name + "_grad", param.grad, global_step=global_step)
         if train_config.enable_summary:
-            # add prediction and label distributions for debug
-            sum_writer.add_histogram("cls_pred_dist", torch.max(cls_preds, dim=-1)[1])
-            sum_writer.add_histogram("cls_targets_dist", cls_targets)
-            sum_writer.add_histogram("dir_pred_dist", torch.max(dir_preds, dim=-1)[1])
-            sum_writer.add_histogram("dir_targets_dist", dir_targets)
+            # predict and label count for each class
+            cls_max_score, cls_max_idx = torch.max(cls_preds, dim=-1)
+            cls_0_pred_cnt = (cls_max_score < 0.5).sum()
+            cls_1_pred_cnt = ((cls_max_score >= 0.5) & (cls_max_idx == 0)).sum()
+            cls_2_pred_cnt = ((cls_max_score >= 0.5) & (cls_max_idx == 1)).sum()
+            cls_3_pred_cnt = ((cls_max_score >= 0.5) & (cls_max_idx == 2)).sum()
+            cls_4_pred_cnt = ((cls_max_score >= 0.5) & (cls_max_idx == 3)).sum()
+            cls_5_pred_cnt = ((cls_max_score >= 0.5) & (cls_max_idx == 4)).sum()
+            sum_writer.add_scalars(
+                "class_pred_count",
+                {"class_0": cls_0_pred_cnt,
+                 "class_1": cls_1_pred_cnt,
+                 "class_2": cls_2_pred_cnt,
+                 "class_3": cls_3_pred_cnt,
+                 "class_4": cls_4_pred_cnt,
+                 "class_5": cls_5_pred_cnt},
+                global_step=global_step
+            )
+
+            cls_0_label_cnt = (cls_targets == 0).sum()
+            cls_1_label_cnt = (cls_targets == 1).sum()
+            cls_2_label_cnt = (cls_targets == 2).sum()
+            cls_3_label_cnt = (cls_targets == 3).sum()
+            cls_4_label_cnt = (cls_targets == 4).sum()
+            cls_5_label_cnt = (cls_targets == 5).sum()
+            sum_writer.add_scalars(
+                "class_label_count",
+                {"class_0": cls_0_label_cnt,
+                 "class_1": cls_1_label_cnt,
+                 "class_2": cls_2_label_cnt,
+                 "class_3": cls_3_label_cnt,
+                 "class_4": cls_4_label_cnt,
+                 "class_5": cls_5_label_cnt},
+                global_step=global_step
+            )
             # add input and class prediction for debug
             voxel_debug_scatter = PointPillarsScatter(
                 model_grid_size, num_input_features=1)
@@ -135,7 +165,7 @@ def train_one_step(train_config, model, optimizer, example_torch,
 
 
 def parse_anchors(anchor_indices, anchor_sizes, len_anchor_size, anchor_rots, len_anchor_rot,
-                  x_size, y_size, z_size, resolution):
+                  x_size, y_size, z_size, resolution, min_offset):
     """ parse anchors according to anchor_indices and anchor_config
     index of anchor is calculated by:
         ((((y * x_size + x) * z_size) + z) * len(anchor_size) + anchor_size_offset) * len(anchor_rot) + anchor_rot
@@ -155,7 +185,7 @@ def parse_anchors(anchor_indices, anchor_sizes, len_anchor_size, anchor_rots, le
     x_idx = anchor_indices % x_size
     anchor_pos = torch.cat([x_idx.unsqueeze(-1), y_idx.unsqueeze(-1), z_idx.unsqueeze(-1)],
                             axis=-1).type(torch.float32)
-    anchor_pos = (anchor_pos + 0.5) * resolution.unsqueeze(0)
+    anchor_pos = (anchor_pos + 0.5) * resolution.unsqueeze(0) + min_offset
 
     anchors = torch.cat([anchor_pos, anchor_size, anchor_rot], axis=-1)
     return anchors
@@ -177,6 +207,10 @@ def predict(model, data_loader, pred_output, config):
     resolution = torch.tensor([vxconf.x_resolution,
                                vxconf.y_resolution,
                                vxconf.z_resolution],
+                              device=model_device).type(torch.float32)
+    min_offset = torch.tensor([vxconf.x_range_min,
+                               vxconf.y_range_min,
+                               vxconf.z_range_min],
                               device=model_device).type(torch.float32)
 
     for example in iter(data_loader):
@@ -224,7 +258,8 @@ def predict(model, data_loader, pred_output, config):
                         x_size,
                         y_size,
                         z_size,
-                        resolution
+                        resolution,
+                        min_offset
                     )
                     box_preds = decode_box_torch(box_preds, anchors)
                     if config.model_config.use_dir_class:
