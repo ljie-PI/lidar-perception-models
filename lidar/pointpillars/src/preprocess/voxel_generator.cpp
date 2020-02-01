@@ -27,6 +27,7 @@ VoxelGenerator::VoxelGenerator(const pointpillars::PointPillarsConfig& config)
   num_voxels_ = config.voxel_config().num_voxels();
   num_points_per_voxel_ = config.voxel_config().num_points_per_voxel();
   voxel_select_method_ = config.voxel_config().voxel_select_method();
+  std::cout << "voxel_select_method: " << voxel_select_method_ << std::endl;
   save_points_ = config.voxel_config().save_points();
   log_voxel_num_ = config.voxel_config().log_voxel_num();
   if (log_voxel_num_) {

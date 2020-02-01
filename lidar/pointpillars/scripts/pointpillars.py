@@ -249,7 +249,7 @@ class RPN(torch.nn.Module):
                 kernel_size=1
             )
 
-    def forward(self, x, bev=None):
+    def forward(self, x):
         x = self.fp_level_1(x)
         up1 = self.deconv1(x)
         x = self.fp_level_2(x)
@@ -361,12 +361,11 @@ class PointPillars(torch.nn.Module):
             reg_loss_reduced *= self._config.train_config.reg_loss_weight
             cls_loss_reduced = cls_loss.sum() / batch_size
             cls_loss_reduced *= self._config.train_config.cls_loss_weight
-            # loss = reg_loss_reduced + cls_loss_reduced
-            loss = cls_loss_reduced
+            loss = reg_loss_reduced + cls_loss_reduced
             if self.use_direction_classifier:
                 dir_loss_reduced = dir_loss.sum() / batch_size
                 dir_loss_reduced *= self._config.train_config.dir_loss_weight
-                # loss += dir_loss_reduced
+                loss += dir_loss_reduced
 
             num_pos = (cls_targets > 0).float().sum() / batch_size
             res = [loss, cls_loss_reduced, reg_loss_reduced, dir_loss_reduced, num_pos]

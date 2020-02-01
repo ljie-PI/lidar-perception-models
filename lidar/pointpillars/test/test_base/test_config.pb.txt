@@ -8,6 +8,7 @@ voxel_config: {
   y_range_max: 30
   z_range_min: -1.5
   z_range_max: 3.5
+  voxel_select_method: RANDOM
   num_voxels: 10
   num_points_per_voxel: 10
 }

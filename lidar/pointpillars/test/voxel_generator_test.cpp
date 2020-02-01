@@ -30,6 +30,7 @@ TEST_F(VoxelGeneratorTest, read_config_test) {
   EXPECT_EQ(false, voxel_generator_->log_voxel_num_);
   EXPECT_EQ(false, voxel_generator_->log_point_num_);
   EXPECT_EQ(false, voxel_generator_->use_reflection_);
+  EXPECT_EQ(pointpillars::RANDOM, voxel_generator_->voxel_select_method_);
 }
 
 TEST_F(VoxelGeneratorTest, generate_voxel_test) {
