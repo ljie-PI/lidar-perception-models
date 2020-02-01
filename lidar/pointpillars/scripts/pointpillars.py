@@ -309,7 +309,7 @@ class PointPillars(torch.nn.Module):
         #     .format(box_preds_map.shape))
         # logging.info("(PointPillars): shape of cls_preds_map is: {}" \
         #     .format(cls_preds_map.shape))
-        dir_preds = None
+        dir_preds_map = torch.zeros(1) # tensorboard add_graph need tensor instead of None
         if self.use_direction_classifier:
             dir_preds_map = preds_dict["dir_preds"]
             # logging.info("(PointPillars): shape of dir_preds_map is: {}" \
@@ -329,6 +329,7 @@ class PointPillars(torch.nn.Module):
             # logging.info("(PointPillars/training): shape of cls_targets is: {}" \
             #     .format(cls_targets.shape))
 
+            dir_preds = None
             if self.use_direction_classifier:
                 dir_preds = dir_preds_map.view(batch_size, -1, 2)
                 dir_preds = torch.stack(
@@ -362,6 +363,7 @@ class PointPillars(torch.nn.Module):
             cls_loss_reduced = cls_loss.sum() / batch_size
             cls_loss_reduced *= self._config.train_config.cls_loss_weight
             loss = reg_loss_reduced + cls_loss_reduced
+            dir_loss_reduced = torch.zeros(1)
             if self.use_direction_classifier:
                 dir_loss_reduced = dir_loss.sum() / batch_size
                 dir_loss_reduced *= self._config.train_config.dir_loss_weight
@@ -405,9 +407,9 @@ def draw_model_graph(model, sum_writer, example):
         # logging.info("(draw_model_graph): shape of cls_targets is: {}".format(cls_targets.shape))
         # logging.info("(draw_model_graph): shape of reg_targets is: {}".format(reg_targets.shape))
         # logging.info("(draw_model_graph): shape of dir_targets is: {}".format(dir_targets.shape))
-        sum_writer.add_graph(
-            model,
-            (voxel_data, voxel_coord, anchor_indices,
-             cls_targets, reg_targets, dir_targets)
-        )
+        if dir_targets is None:
+            inputs = (voxel_data, voxel_coord, anchor_indices, cls_targets, reg_targets)
+        else:
+            inputs = (voxel_data, voxel_coord, anchor_indices, cls_targets, reg_targets, dir_targets)
+        sum_writer.add_graph(model, inputs)
         sum_writer.flush()

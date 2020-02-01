@@ -61,11 +61,11 @@ def example_convert_to_torch(example, dtype=torch.float32, device=None):
     int_names = {"voxel_coord", "cls_targets", "dir_targets"}
     long_names = {"anchor_indices", "example_id"}
     for k, v in example.items():
-        if k in float_names:
+        if k in float_names and v is not None:
             example_torch[k] = torch.as_tensor(v, dtype=dtype, device=device)
-        elif k in int_names:
+        elif k in int_names and v is not None:
             example_torch[k] = torch.as_tensor(v, dtype=torch.int32, device=device)
-        elif k in long_names:
+        elif k in long_names and v is not None:
             example_torch[k] = torch.as_tensor(v, dtype=torch.long, device=device)
         else:
             example_torch[k] = v
