@@ -18,6 +18,8 @@ PreProcessor::PreProcessor(pointpillars::PointPillarsConfig& config)
     : config_(config) {
   voxel_generator_ = std::make_shared<VoxelGenerator>(config_);
   target_assigner_ = std::make_shared<TargetAssigner>(config_);
+
+  save_neg_anchor_rand_ = std::make_shared<UniformDistRandom>(0.0, 1.0);
 }
 
 bool PreProcessor::SaveExample(const pointpillars::Example& example,
@@ -63,7 +65,9 @@ bool PreProcessor::SaveAnchors(const pointpillars::Example& example,
     if (anchor.is_positive()) {
       pos_anch_ofs << anchor_fmt_ss.str();
     } else {
-      neg_anch_ofs << anchor_fmt_ss.str();
+      if (save_neg_anchor_rand_->Generate() < 0.002) {
+        neg_anch_ofs << anchor_fmt_ss.str();
+      }
     }
   }
   pos_anch_ofs.flush();

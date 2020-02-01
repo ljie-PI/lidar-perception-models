@@ -1,5 +1,6 @@
 #pragma once
 
+#include "common/random.h"
 #include "voxel_generator.h"
 #include "target_assigner.h"
 #include "pp_config.pb.h"
@@ -25,4 +26,6 @@ class PreProcessor {
   pointpillars::PointPillarsConfig config_;
   std::shared_ptr<VoxelGenerator> voxel_generator_;
   std::shared_ptr<TargetAssigner> target_assigner_;
+
+  std::shared_ptr<UniformDistRandom> save_neg_anchor_rand_;
 };
