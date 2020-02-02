@@ -132,3 +132,13 @@ bin/pp_example_gen \
   --output_dir=/data/perception/pointpillars/test/preprocess \
   --output_anchor
 ```
+
+**To train the model**
+```
+./model_run.py \
+  --action train \
+  --config /nfs/data/perception/pointpillars/configs/pp_config.pb.txt \
+  --train_data_path /nfs/data/perception/pointpillars/data/train \
+  --eval_data_path /nfs/data/perception/pointpillars/data/eval \
+  --model_path /nfs/data/perception/pointpillars/models/baseline
+```
