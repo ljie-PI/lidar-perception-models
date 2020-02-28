@@ -210,7 +210,7 @@ def predict(model, data_loader, pred_output, config):
                               device=model_device).type(torch.float32)
     min_offset = torch.tensor([vxconf.x_range_min,
                                vxconf.y_range_min,
-                               vxconf.z_range_min],
+                               -0.5 * vxconf.z_resolution],
                               device=model_device).type(torch.float32)
 
     for example in iter(data_loader):
