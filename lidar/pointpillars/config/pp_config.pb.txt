@@ -90,6 +90,6 @@ train_config {
 }
 
 eval_config {
-  batch_size: 2
+  batch_size: 1
   data_load_threads: 2
 }

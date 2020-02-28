@@ -444,6 +444,9 @@ def model_predict(config_file, pred_data_path, pred_output, model_path):
     if not os.path.exists(model_path):
         raise Exception("model_path: {} doesn't exist".format(model_path))
 
+    if not os.path.exists(pred_output):
+        os.makedirs(pred_output)
+
     config = pp_config_pb2.PointPillarsConfig()
     fconfig = open(config_file)
     text_format.Parse(fconfig.read(), config)
@@ -466,7 +469,7 @@ def model_predict(config_file, pred_data_path, pred_output, model_path):
     logging.info("Model restored")
 
     data_set = PointPillarsDataset(config, pred_data_path, is_train=False)
-    data_loader = create_data_loader(config, data_set)
+    data_loader = create_eval_data_loader(config, data_set)
 
     predict(model, data_loader, pred_output, config)
 
