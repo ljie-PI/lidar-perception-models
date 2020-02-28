@@ -102,4 +102,5 @@ message PointPillarsConfig {
   required ModelConfig model_config = 3;
   required TrainConfig train_config = 4;
   required EvalConfig eval_config = 5;
+  optional bool is_debug = 6 [default=false];
 }

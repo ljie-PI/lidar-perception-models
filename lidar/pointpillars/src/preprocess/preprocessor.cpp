@@ -18,6 +18,7 @@ PreProcessor::PreProcessor(pointpillars::PointPillarsConfig& config)
     : config_(config) {
   voxel_generator_ = std::make_shared<VoxelGenerator>(config_);
   target_assigner_ = std::make_shared<TargetAssigner>(config_);
+  is_debug_ = config.is_debug();
 
   save_neg_anchor_rand_ = std::make_shared<UniformDistRandom>(0.0, 1.0);
 }
@@ -25,6 +26,10 @@ PreProcessor::PreProcessor(pointpillars::PointPillarsConfig& config)
 bool PreProcessor::SaveExample(const pointpillars::Example& example,
                                const std::string& example_id,
                                const std::string& output_dir) {
+  if (is_debug_) {
+    std::string output_file = output_dir + "/" + example_id + ".pb.txt";
+    return ProtobufUtil::SaveToASCIIFile(example, output_file);
+  }
   std::string output_file = output_dir + "/" + example_id + ".bin";
   return ProtobufUtil::SaveToBinaryFile(example, output_file);
 }

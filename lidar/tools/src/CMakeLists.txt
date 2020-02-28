@@ -35,6 +35,8 @@ add_executable(${SEG_VIS_TARGET}
 target_link_libraries(${SEG_VIS_TARGET}
         gflags
         ${PCL_LIBRARIES})
+install(TARGETS ${SEG_VIS_TARGET}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 
 set(TRACK_VIS_TARGET track_view)
 add_executable(${TRACK_VIS_TARGET}
@@ -43,5 +45,7 @@ add_executable(${TRACK_VIS_TARGET}
 target_link_libraries(${TRACK_VIS_TARGET}
         gflags
         ${PCL_LIBRARIES})
+install(TARGETS ${TRACK_VIS_TARGET}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 
 ## metric calculation

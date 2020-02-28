@@ -28,4 +28,6 @@ class PreProcessor {
   std::shared_ptr<TargetAssigner> target_assigner_;
 
   std::shared_ptr<UniformDistRandom> save_neg_anchor_rand_;
+
+  bool is_debug_;
 };
