@@ -142,3 +142,13 @@ bin/pp_example_gen \
   --eval_data_path /nfs/data/perception/pointpillars/data/eval \
   --model_path /nfs/data/perception/pointpillars/models/baseline
 ```
+
+**To predict with model**
+```
+./model_run.py \
+  --action predict \
+  --config /volume1/data/pointpillars/configs/pp_config_lr_0.0005.pb.txt \
+  --pred_data_path /volume1/data/pointpillars/test/preprocess \
+  --pred_output /volume1/data/pointpillars/test/preds/baseline_lr_0.0005 \
+  --model_path /volume1/data/pointpillars/models/baseline_lr_0.0005
+```
